@@ -1,0 +1,21 @@
+name: Generate
+
+on:
+  - push
+
+jobs:
+  generate:
+
+    # uses: speakeasy-api/sdk-generation-action/.github/workflows/sdk-generation.yaml@v14 # Import the sdk generation workflow which will handle the generation of the SDKs and publishing to the package managers in 'direct' mode.
+    # with:
+    #   speakeasy_version: latest
+    #   openapi_docs: |
+    #     - location: https://docs.speakeasyapi.dev/openapi.yaml
+    #   languages: |-
+    #     - python
+    #   mode: pr
+    #   force: ${{ github.event.inputs.force }}
+    #   python_directory: .
+    # secrets:
+    #   speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
+    #   github_access_token: ${{ secrets.GITHUB_TOKEN }}
