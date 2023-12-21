@@ -24,7 +24,9 @@ jobs:
         pip install -r ./easyreview/backend/requirements.txt
     - name: Generate OpenAPI schema
       run: |
-        python ./easyreview/backend/manage.py spectacular > ./easyreview-schema.yaml
+        python ./easyreview/backend/manage.py spectacular --file ./easyreview.yaml
+    - name: Clone this repository
+      uses: actions/checkout@v4
     - name: Generate SDK
       uses: speakeasy-api/sdk-generation-action@v14
       with:
@@ -32,11 +34,11 @@ jobs:
         github_access_token: ${{ secrets.GITHUB_TOKEN }}
         speakeasy_version: latest
         openapi_docs: |
-          - ./easyreview-schema.yaml
-        openapi_doc_location: ./easyreview-schema.yaml
+          - ./easyreview.yaml
         languages: |-
           - python
-        mode: pr
+        mode: direct
+        force: ${{ github.event.inputs.force }}
     - name: Check generation
       run: |
         ls -la
