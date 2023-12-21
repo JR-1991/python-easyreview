@@ -184,7 +184,7 @@ s = easyreview.EasyReview(
 
 res = s.reviews.get_reviews()
 
-if res.status_code == 200:
+if res.reviewers is not None:
     # handle response
     pass
 ```
@@ -216,7 +216,7 @@ s = easyreview.EasyReview(
 
 res = s.reviews.get_reviews_by_reviewer(reviewerid='string')
 
-if res.review is not None:
+if res.reviews is not None:
     # handle response
     pass
 ```

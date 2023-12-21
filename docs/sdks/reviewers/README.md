@@ -4,7 +4,7 @@
 ### Available Operations
 
 * [get_reviewer_by_id](#get_reviewer_by_id)
-* [get_reviewer](#get_reviewer)
+* [add_reviewer](#add_reviewer)
 * [get_reviewers](#get_reviewers)
 
 ## get_reviewer_by_id
@@ -45,7 +45,7 @@ if res.reviewer is not None:
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4x-5xx          | */*             |
 
-## get_reviewer
+## add_reviewer
 
 ### Example Usage
 
@@ -60,13 +60,13 @@ s = easyreview.EasyReview(
 )
 
 req = components.ReviewerInput(
-    username='Frankie52',
-    first_name='Vallie',
-    last_name='Flatley',
-    email='Dave52@gmail.com',
+    username='Myriam_Batz70',
+    first_name='Raphaelle',
+    last_name='Grant',
+    email='Tremaine38@gmail.com',
 )
 
-res = s.reviewers.get_reviewer(req)
+res = s.reviewers.add_reviewer(req)
 
 if res.status_code == 200:
     # handle response
@@ -82,7 +82,7 @@ if res.status_code == 200:
 
 ### Response
 
-**[operations.GetReviewerResponse](../../models/operations/getreviewerresponse.md)**
+**[operations.AddReviewerResponse](../../models/operations/addreviewerresponse.md)**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |
@@ -106,7 +106,7 @@ s = easyreview.EasyReview(
 
 res = s.reviewers.get_reviewers()
 
-if res.status_code == 200:
+if res.reviewers is not None:
     # handle response
     pass
 ```

@@ -6,7 +6,7 @@ import requests as requests_http
 
 
 @dataclasses.dataclass
-class GetReviewerResponse:
+class AddReviewerResponse:
     content_type: str = dataclasses.field()
     r"""HTTP response content type for this operation"""
     raw_response: requests_http.Response = dataclasses.field()

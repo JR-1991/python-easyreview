@@ -11,7 +11,7 @@
 ## SDK Installation
 
 ```bash
-pip install git+https://github.com/JR-1991/python-easyreview.git
+pip install easyreview
 ```
 <!-- End SDK Installation [installation] -->
 
@@ -54,7 +54,7 @@ if res.status_code == 200:
 ### [reviewers](docs/sdks/reviewers/README.md)
 
 * [get_reviewer_by_id](docs/sdks/reviewers/README.md#get_reviewer_by_id)
-* [get_reviewer](docs/sdks/reviewers/README.md#get_reviewer)
+* [add_reviewer](docs/sdks/reviewers/README.md#add_reviewer)
 * [get_reviewers](docs/sdks/reviewers/README.md#get_reviewers)
 
 ### [reviews](docs/sdks/reviews/README.md)

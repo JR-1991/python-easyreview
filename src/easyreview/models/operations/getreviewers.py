@@ -3,6 +3,8 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
+from ...models.components import reviewer as components_reviewer
+from typing import List, Optional
 
 
 @dataclasses.dataclass
@@ -13,5 +15,6 @@ class GetReviewersResponse:
     r"""Raw HTTP response; suitable for custom response parsing"""
     status_code: int = dataclasses.field()
     r"""HTTP response status code for this operation"""
+    reviewers: Optional[List[components_reviewer.Reviewer]] = dataclasses.field(default=None)
     
 
