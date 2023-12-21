@@ -102,7 +102,7 @@ paths:
           description: ''
   /api/reviewers/add/:
     post:
-      operationId: getReviewer
+      operationId: addReviewer
       tags:
       - reviewers
       requestBody:
@@ -131,7 +131,13 @@ paths:
       - basicAuth: []
       responses:
         '200':
-          description: No response body
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Reviewer'
+          description: ''
   /api/reviews/{id}/:
     get:
       operationId: getReviewByID
@@ -219,7 +225,13 @@ paths:
       - basicAuth: []
       responses:
         '200':
-          description: No response body
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Reviewer'
+          description: ''
   /api/reviews/reviewer/{reviewerid}/:
     get:
       operationId: getReviewsByReviewer
@@ -238,7 +250,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Review'
+                type: array
+                items:
+                  $ref: '#/components/schemas/Review'
           description: ''
   /api/reviews/stats/{id}/:
     get:
