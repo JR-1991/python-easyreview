@@ -27,10 +27,9 @@ jobs:
         python ./easyreview/backend/manage.py spectacular > ./easyreview-schema.yaml
     - name: Generate SDK
       uses: speakeasy-api/sdk-generation-action@v14
-      secrets:
+      with:
         speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
         github_access_token: ${{ secrets.GITHUB_TOKEN }}
-      with:
         speakeasy_version: latest
         openapi_docs: |
           - ./easyreview-schema.yaml
