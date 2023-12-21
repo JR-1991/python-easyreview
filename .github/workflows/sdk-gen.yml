@@ -7,41 +7,15 @@ jobs:
   generate-sdk:
     runs-on: ubuntu-latest
     steps:
-    - name: Clone EasyReview
-      uses: actions/checkout@v4
-      with:
-        repository: JR-1991/easyreview
-        path: ./easyreview
-        ref: main
-        token: ${{ secrets.GITHUB_TOKEN }}
-    - name: Setup Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: "3.10"
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r ./easyreview/backend/requirements.txt
-    - name: Generate OpenAPI schema
-      run: |
-        python ./easyreview/backend/manage.py spectacular --file ./easyreview.yaml
-    - name: Clone this repository
-      uses: actions/checkout@v4
-    - name: Check content
-      run: |
-        ls -ls
-    - name: Generate SDK
-      uses: speakeasy-api/sdk-generation-action@v14
-      with:
-        speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
-        github_access_token: ${{ secrets.GITHUB_TOKEN }}
-        speakeasy_version: latest
-        openapi_docs: |
-          - location: ./easyreview.yaml
-        languages: |-
-          - python
-        mode: pr
-        force: ${{ github.event.inputs.force }}
-    - name: Check generation
-      run: |
-        ls -la
+      - name: Generate SDK
+        uses: speakeasy-api/sdk-generation-action@v14
+        with:
+          speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+          speakeasy_version: latest
+          openapi_docs: |
+            - location: ./easyreview.yaml
+          languages: |-
+            - python
+          mode: pr
+          force: ${{ github.event.inputs.force }}
