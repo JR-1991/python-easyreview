@@ -4,18 +4,40 @@ on:
   - push
 
 jobs:
-  generate:
-
-    # uses: speakeasy-api/sdk-generation-action/.github/workflows/sdk-generation.yaml@v14 # Import the sdk generation workflow which will handle the generation of the SDKs and publishing to the package managers in 'direct' mode.
-    # with:
-    #   speakeasy_version: latest
-    #   openapi_docs: |
-    #     - location: https://docs.speakeasyapi.dev/openapi.yaml
-    #   languages: |-
-    #     - python
-    #   mode: pr
-    #   force: ${{ github.event.inputs.force }}
-    #   python_directory: .
-    # secrets:
-    #   speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
-    #   github_access_token: ${{ secrets.GITHUB_TOKEN }}
+  generate-sdk:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Clone EasyReview
+      uses: actions/checkout@v4
+      with:
+        repository: JR-1991/easyreview
+        path: ./easyreview
+        ref: main
+        token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.10"
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r ./easyreview/backend/requirements.txt
+    - name: Generate OpenAPI schema
+      run: |
+        python ./easyreview/backend/manage.py spectacular > ./easyreview-schema.yaml
+    - name: Generate SDK
+      uses: speakeasy-api/sdk-generation-action@v14
+      secrets:
+        speakeasy_api_key: ${{ secrets.SPEAKEASY_API_KEY }}
+        github_access_token: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        speakeasy_version: latest
+        openapi_docs: |
+          - ./easyreview-schema.yaml
+        openapi_doc_location: ./easyreview-schema.yaml
+        languages: |-
+          - python
+        mode: pr
+    - name: Check generation
+      run: |
+        ls -la
