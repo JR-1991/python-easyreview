@@ -12,7 +12,6 @@ jobs:
         - ./easyreview.yaml
       languages: |-
         - python
-      publish_python: true # Tells the generation action to generate artifacts for publishing to PyPi
       mode: pr
       force: ${{ github.event.inputs.force }}
     secrets:
