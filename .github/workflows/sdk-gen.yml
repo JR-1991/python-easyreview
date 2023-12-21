@@ -34,10 +34,10 @@ jobs:
         github_access_token: ${{ secrets.GITHUB_TOKEN }}
         speakeasy_version: latest
         openapi_docs: |
-          - ./easyreview.yaml
+          - location: ./easyreview.yaml
         languages: |-
           - python
-        mode: direct
+        mode: pr
         force: ${{ github.event.inputs.force }}
     - name: Check generation
       run: |
