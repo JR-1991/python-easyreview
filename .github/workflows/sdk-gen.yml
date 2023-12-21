@@ -18,15 +18,18 @@ jobs:
       uses: actions/setup-python@v4
       with:
         python-version: "3.10"
-    - name: Install dependencies
+    - name: Run EasyDataverse
       run: |
-        python -m pip install --upgrade pip
-        pip install -r ./easyreview/backend/requirements.txt
-    - name: Generate OpenAPI schema
-      run: |
-        python ./easyreview/backend/manage.py spectacular --file ./easyreview.yaml
-    - name: Clone this repository
-      uses: actions/checkout@v4
+        cd ./easyreview
+        docker-compose up -d
+        cd ..
+    - name: Wait for EasyReview to start
+      uses: cygnetdigital/wait_for_response@v2.0.0
+      with:
+        url: 'http://localhost:8000/api/reviews/list/'
+        responseCode: '200'
+        timeout: 2000
+        interval: 500
     - name: Generate SDK
       uses: speakeasy-api/sdk-generation-action@v14
       with:
@@ -34,7 +37,7 @@ jobs:
         github_access_token: ${{ secrets.GITHUB_TOKEN }}
         speakeasy_version: latest
         openapi_docs: |
-          - location: ./easyreview.yaml
+          - location: http://localhost:8000/api/schema
         languages: |-
           - python
         mode: pr
