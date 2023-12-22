@@ -33,7 +33,7 @@ s = easyreview.EasyReview(
 
 res = s.dataset.fetch_dataset_from_doi(doi='string', site_url='string', api_token='string')
 
-if res.status_code == 200:
+if res.review is not None:
     # handle response
     pass
 ```
@@ -97,7 +97,7 @@ except errors.SDKError as e:
     print(e)  # handle exception
     raise(e)
 
-if res.status_code == 200:
+if res.review is not None:
     # handle response
     pass
 ```
@@ -130,7 +130,7 @@ s = easyreview.EasyReview(
 
 res = s.dataset.fetch_dataset_from_doi(doi='string', site_url='string', api_token='string')
 
-if res.status_code == 200:
+if res.review is not None:
     # handle response
     pass
 ```
@@ -153,7 +153,7 @@ s = easyreview.EasyReview(
 
 res = s.dataset.fetch_dataset_from_doi(doi='string', site_url='string', api_token='string')
 
-if res.status_code == 200:
+if res.review is not None:
     # handle response
     pass
 ```
@@ -200,7 +200,7 @@ s = easyreview.EasyReview(
 
 res = s.dataset.fetch_dataset_from_doi(doi='string', site_url='string', api_token='string')
 
-if res.status_code == 200:
+if res.review is not None:
     # handle response
     pass
 ```

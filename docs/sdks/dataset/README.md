@@ -22,7 +22,7 @@ s = easyreview.EasyReview(
 
 res = s.dataset.fetch_dataset_from_doi(doi='string', site_url='string', api_token='string')
 
-if res.status_code == 200:
+if res.review is not None:
     # handle response
     pass
 ```
