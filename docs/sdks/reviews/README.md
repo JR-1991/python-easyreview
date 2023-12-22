@@ -184,7 +184,7 @@ s = easyreview.EasyReview(
 
 res = s.reviews.get_reviews()
 
-if res.reviewers is not None:
+if res.reviews is not None:
     # handle response
     pass
 ```
