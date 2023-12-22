@@ -31,7 +31,11 @@ paths:
       - basicAuth: []
       responses:
         '200':
-          description: No response body
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Review'
+          description: ''
   /api/field/{id}/:
     get:
       operationId: getFieldByID
