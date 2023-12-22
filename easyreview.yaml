@@ -230,7 +230,7 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Reviewer'
+                  $ref: '#/components/schemas/Review'
           description: ''
   /api/reviews/reviewer/{reviewerid}/:
     get:
