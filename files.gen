@@ -16,7 +16,7 @@ src/easyreview/models/operations/fetchdatasetfromdoi.py
 src/easyreview/models/operations/getfieldbyid.py
 src/easyreview/models/operations/updatefield.py
 src/easyreview/models/operations/getreviewerbyid.py
-src/easyreview/models/operations/getreviewer.py
+src/easyreview/models/operations/addreviewer.py
 src/easyreview/models/operations/getreviewers.py
 src/easyreview/models/operations/getreviewbyid.py
 src/easyreview/models/operations/addreview.py
@@ -46,7 +46,7 @@ docs/models/operations/updatefieldrequest.md
 docs/models/operations/updatefieldresponse.md
 docs/models/operations/getreviewerbyidrequest.md
 docs/models/operations/getreviewerbyidresponse.md
-docs/models/operations/getreviewerresponse.md
+docs/models/operations/addreviewerresponse.md
 docs/models/operations/getreviewersresponse.md
 docs/models/operations/getreviewbyidrequest.md
 docs/models/operations/getreviewbyidresponse.md

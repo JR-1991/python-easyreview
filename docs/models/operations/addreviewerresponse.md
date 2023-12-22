@@ -1,4 +1,4 @@
-# GetReviewerResponse
+# AddReviewerResponse
 
 
 ## Fields
