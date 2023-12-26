@@ -3,6 +3,7 @@
 from __future__ import annotations
 import dataclasses
 import dateutil.parser
+from .file import File
 from .metadatablock import Metadatablock
 from dataclasses_json import Undefined, dataclass_json
 from datetime import datetime
@@ -13,6 +14,7 @@ from typing import List, Optional
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class Review:
+    files: List[File] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('files') }})
     id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('id') }})
     metadatablocks: List[Metadatablock] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('metadatablocks') }})
     revision: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('revision') }})
