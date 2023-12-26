@@ -14,6 +14,7 @@ class Field:
     
     
     def get_field_by_id(self, id: str) -> operations.GetFieldByIDResponse:
+        r"""Returns a field for a given field ID."""
         request = operations.GetFieldByIDRequest(
             id=id,
         )
@@ -49,6 +50,7 @@ class Field:
     
     
     def update_field(self, id: str, field: components.FieldInput) -> operations.UpdateFieldResponse:
+        r"""Updates a field for a given field ID."""
         request = operations.UpdateFieldRequest(
             id=id,
             field=field,
@@ -56,7 +58,7 @@ class Field:
         
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(operations.UpdateFieldRequest, base_url, '/api/field/update/{id}/', request)
+        url = utils.generate_url(operations.UpdateFieldRequest, base_url, '/api/field/{id}/', request)
         headers = {}
         req_content_type, data, form = utils.serialize_request_body(request, operations.UpdateFieldRequest, "field", False, False, 'json')
         if req_content_type not in ('multipart/form-data', 'multipart/mixed'):

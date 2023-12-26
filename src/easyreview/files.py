@@ -5,7 +5,7 @@ from easyreview import utils
 from easyreview.models import components, errors, operations
 from typing import List, Optional
 
-class Reviewers:
+class Files:
     sdk_configuration: SDKConfiguration
 
     def __init__(self, sdk_config: SDKConfiguration) -> None:
@@ -13,13 +13,13 @@ class Reviewers:
         
     
     
-    def add_reviewer(self, request: components.ReviewerInput) -> operations.AddReviewerResponse:
-        r"""Adds a new reviewer to the database."""
+    def add_file(self, request: components.FileInput) -> operations.AddFileResponse:
+        r"""Adds a new file to the database."""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = base_url + '/api/reviewers/'
+        url = base_url + '/api/files/'
         headers = {}
-        req_content_type, data, form = utils.serialize_request_body(request, components.ReviewerInput, "request", False, False, 'json')
+        req_content_type, data, form = utils.serialize_request_body(request, components.FileInput, "request", False, False, 'json')
         if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
             headers['content-type'] = req_content_type
         if data is None and form is None:
@@ -35,7 +35,7 @@ class Reviewers:
         http_res = client.request('POST', url, data=data, files=form, headers=headers)
         content_type = http_res.headers.get('Content-Type')
         
-        res = operations.AddReviewerResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
+        res = operations.AddFileResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 200:
             pass
@@ -46,15 +46,15 @@ class Reviewers:
 
     
     
-    def get_reviewer_by_id(self, id: str) -> operations.GetReviewerByIDResponse:
-        r"""Returns a reviewer for a given reviewer ID."""
-        request = operations.GetReviewerByIDRequest(
+    def get_file_by_id(self, id: str) -> operations.GetFileByIDResponse:
+        r"""Returns a file for a given file ID."""
+        request = operations.GetFileByIDRequest(
             id=id,
         )
         
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(operations.GetReviewerByIDRequest, base_url, '/api/reviewers/{id}/', request)
+        url = utils.generate_url(operations.GetFileByIDRequest, base_url, '/api/files/{id}/', request)
         headers = {}
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
@@ -67,12 +67,12 @@ class Reviewers:
         http_res = client.request('GET', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
         
-        res = operations.GetReviewerByIDResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
+        res = operations.GetFileByIDResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 200:
             if utils.match_content_type(content_type, 'application/json'):
-                out = utils.unmarshal_json(http_res.text, Optional[components.Reviewer])
-                res.reviewer = out
+                out = utils.unmarshal_json(http_res.text, Optional[components.File])
+                res.file = out
             else:
                 raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
         elif http_res.status_code >= 400 and http_res.status_code < 500 or http_res.status_code >= 500 and http_res.status_code < 600:
@@ -82,11 +82,11 @@ class Reviewers:
 
     
     
-    def get_reviewers(self) -> operations.GetReviewersResponse:
-        r"""Returns all reviewers."""
+    def get_files(self) -> operations.GetFilesResponse:
+        r"""Returns all files."""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = base_url + '/api/reviewers/list/'
+        url = base_url + '/api/files/list/'
         headers = {}
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
@@ -99,12 +99,12 @@ class Reviewers:
         http_res = client.request('GET', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
         
-        res = operations.GetReviewersResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
+        res = operations.GetFilesResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 200:
             if utils.match_content_type(content_type, 'application/json'):
-                out = utils.unmarshal_json(http_res.text, Optional[List[components.Reviewer]])
-                res.reviewers = out
+                out = utils.unmarshal_json(http_res.text, Optional[List[components.File]])
+                res.files = out
             else:
                 raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
         elif http_res.status_code >= 400 and http_res.status_code < 500 or http_res.status_code >= 500 and http_res.status_code < 600:

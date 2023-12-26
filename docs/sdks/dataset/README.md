@@ -3,9 +3,11 @@
 
 ### Available Operations
 
-* [fetch_dataset_from_doi](#fetch_dataset_from_doi)
+* [fetch_dataset_from_doi](#fetch_dataset_from_doi) - Fetches a dataset from a Dataverse installation and adds it to the database. This function will also check whether the given dataset is already present in the database and thus returns the entry. If not, a new one will be created and returned from this endpoint.
 
 ## fetch_dataset_from_doi
+
+Fetches a dataset from a Dataverse installation and adds it to the database. This function will also check whether the given dataset is already present in the database and thus returns the entry. If not, a new one will be created and returned from this endpoint.
 
 ### Example Usage
 

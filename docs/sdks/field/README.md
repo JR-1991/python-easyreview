@@ -3,10 +3,12 @@
 
 ### Available Operations
 
-* [get_field_by_id](#get_field_by_id)
-* [update_field](#update_field)
+* [get_field_by_id](#get_field_by_id) - Returns a field for a given field ID.
+* [update_field](#update_field) - Updates a field for a given field ID.
 
 ## get_field_by_id
+
+Returns a field for a given field ID.
 
 ### Example Usage
 
@@ -45,6 +47,8 @@ if res.field is not None:
 | errors.SDKError | 4x-5xx          | */*             |
 
 ## update_field
+
+Updates a field for a given field ID.
 
 ### Example Usage
 

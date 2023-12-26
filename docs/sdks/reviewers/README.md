@@ -3,49 +3,13 @@
 
 ### Available Operations
 
-* [get_reviewer_by_id](#get_reviewer_by_id)
-* [add_reviewer](#add_reviewer)
-* [get_reviewers](#get_reviewers)
-
-## get_reviewer_by_id
-
-### Example Usage
-
-```python
-import easyreview
-from easyreview.models import components, operations
-
-s = easyreview.EasyReview(
-    security=components.Security(
-        username="<YOUR_USERNAME_HERE>",
-    ),
-)
-
-
-res = s.reviewers.get_reviewer_by_id(id='string')
-
-if res.reviewer is not None:
-    # handle response
-    pass
-```
-
-### Parameters
-
-| Parameter          | Type               | Required           | Description        |
-| ------------------ | ------------------ | ------------------ | ------------------ |
-| `id`               | *str*              | :heavy_check_mark: | N/A                |
-
-
-### Response
-
-**[operations.GetReviewerByIDResponse](../../models/operations/getreviewerbyidresponse.md)**
-### Errors
-
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+* [add_reviewer](#add_reviewer) - Adds a new reviewer to the database.
+* [get_reviewer_by_id](#get_reviewer_by_id) - Returns a reviewer for a given reviewer ID.
+* [get_reviewers](#get_reviewers) - Returns all reviewers.
 
 ## add_reviewer
+
+Adds a new reviewer to the database.
 
 ### Example Usage
 
@@ -89,7 +53,49 @@ if res.status_code == 200:
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4x-5xx          | */*             |
 
+## get_reviewer_by_id
+
+Returns a reviewer for a given reviewer ID.
+
+### Example Usage
+
+```python
+import easyreview
+from easyreview.models import components, operations
+
+s = easyreview.EasyReview(
+    security=components.Security(
+        username="<YOUR_USERNAME_HERE>",
+    ),
+)
+
+
+res = s.reviewers.get_reviewer_by_id(id='string')
+
+if res.reviewer is not None:
+    # handle response
+    pass
+```
+
+### Parameters
+
+| Parameter          | Type               | Required           | Description        |
+| ------------------ | ------------------ | ------------------ | ------------------ |
+| `id`               | *str*              | :heavy_check_mark: | N/A                |
+
+
+### Response
+
+**[operations.GetReviewerByIDResponse](../../models/operations/getreviewerbyidresponse.md)**
+### Errors
+
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4x-5xx          | */*             |
+
 ## get_reviewers
+
+Returns all reviewers.
 
 ### Example Usage
 

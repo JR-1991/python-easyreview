@@ -3,6 +3,8 @@
 from .compound import *
 from .field import *
 from .field_input import *
+from .file import *
+from .file_input import *
 from .metadatablock import *
 from .review import *
 from .review_input import *
@@ -10,4 +12,4 @@ from .reviewer import *
 from .reviewer_input import *
 from .security import *
 
-__all__ = ["Compound","Field","FieldInput","Metadatablock","Review","ReviewInput","Reviewer","ReviewerInput","Security"]
+__all__ = ["Compound","Field","FieldInput","File","FileInput","Metadatablock","Review","ReviewInput","Reviewer","ReviewerInput","Security"]

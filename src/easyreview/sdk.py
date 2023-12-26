@@ -3,8 +3,9 @@
 import requests as requests_http
 from .dataset import Dataset
 from .field import Field
+from .files import Files
+from .review import Review
 from .reviewers import Reviewers
-from .reviews import Reviews
 from .sdkconfiguration import SDKConfiguration
 from easyreview import utils
 from easyreview.models import components
@@ -14,8 +15,9 @@ class EasyReview:
     r"""EasyReview API: Backend used for the EasyReview app to manage reviews."""
     dataset: Dataset
     field: Field
+    files: Files
+    review: Review
     reviewers: Reviewers
-    reviews: Reviews
 
     sdk_configuration: SDKConfiguration
 
@@ -56,6 +58,7 @@ class EasyReview:
     def _init_sdks(self):
         self.dataset = Dataset(self.sdk_configuration)
         self.field = Field(self.sdk_configuration)
+        self.files = Files(self.sdk_configuration)
+        self.review = Review(self.sdk_configuration)
         self.reviewers = Reviewers(self.sdk_configuration)
-        self.reviews = Reviews(self.sdk_configuration)
     

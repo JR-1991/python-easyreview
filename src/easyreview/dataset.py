@@ -14,6 +14,7 @@ class Dataset:
     
     
     def fetch_dataset_from_doi(self, doi: str, site_url: str, api_token: Optional[str] = None) -> operations.FetchDatasetFromDOIResponse:
+        r"""Fetches a dataset from a Dataverse installation and adds it to the database. This function will also check whether the given dataset is already present in the database and thus returns the entry. If not, a new one will be created and returned from this endpoint."""
         request = operations.FetchDatasetFromDOIRequest(
             doi=doi,
             site_url=site_url,
