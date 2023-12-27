@@ -4,7 +4,496 @@ info:
   version: 0.0.1
   description: Backend used for the EasyReview app to manage reviews.
 paths:
-  /api/dataset/fetch/:
+  /api/fields/{id}:
+    get:
+      operationId: getFieldByID
+      description: Returns a field for a given field ID.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - fields
+      security:
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Field'
+          description: ''
+    put:
+      operationId: updateField
+      description: Updates a field for a given field ID.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - fields
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Field'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Field'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Field'
+        required: true
+      security:
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Field'
+          description: ''
+    patch:
+      operationId: partialUpdateField
+      description: Updates a field for a given field ID.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - fields
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedField'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedField'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedField'
+      security:
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Field'
+          description: ''
+  /api/files/{id}:
+    get:
+      operationId: getFileById
+      description: Returns a file for a given file ID.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - files
+      security:
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/File'
+          description: ''
+    put:
+      operationId: updateFile
+      description: Updates a file for a given file ID.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - files
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/File'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/File'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/File'
+        required: true
+      security:
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/File'
+          description: ''
+    patch:
+      operationId: partialUpdateFile
+      description: Updates a file for a given file ID.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - files
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedFile'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedFile'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedFile'
+      security:
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/File'
+          description: ''
+  /api/reviewers/:
+    get:
+      operationId: getReviewers
+      description: Returns all reviewers
+      tags:
+      - reviewers
+      security:
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Reviewer'
+          description: ''
+    post:
+      operationId: addReviewer
+      description: Adds a new reviewer to the database.
+      tags:
+      - reviewers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Reviewer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Reviewer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Reviewer'
+        required: true
+      security:
+      - basicAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reviewer'
+          description: ''
+  /api/reviewers/{id}:
+    get:
+      operationId: getReviewerById
+      description: Returns a reviewer for a given reviewer ID.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - reviewers
+      security:
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reviewer'
+          description: ''
+    put:
+      operationId: updateReviewer
+      description: Updates a reviewer for a given reviewer ID.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - reviewers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Reviewer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Reviewer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Reviewer'
+        required: true
+      security:
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reviewer'
+          description: ''
+    patch:
+      operationId: partialUpdateReviewer
+      description: Partially updates a reviewer for a given reviewer ID.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - reviewers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedReviewer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedReviewer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedReviewer'
+      security:
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reviewer'
+          description: ''
+    delete:
+      operationId: deleteReviewer
+      description: Deletes a reviewer from the database.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - reviewers
+      security:
+      - basicAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/reviews/:
+    get:
+      operationId: getReviews
+      description: Returns all reviews
+      tags:
+      - reviews
+      security:
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Review'
+          description: ''
+  /api/reviews/{id}/files/:
+    get:
+      operationId: getFilesByReviewId
+      description: Returns all files for a given review ID.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - reviews
+      security:
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/File'
+          description: ''
+  /api/reviews/{id}/stats/:
+    get:
+      operationId: getFieldCount
+      description: Returns the number of fields for a given review ID.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - reviews
+      security:
+      - basicAuth: []
+      responses:
+        '200':
+          description: No response body
+  /api/reviews/{id}/:
+    get:
+      operationId: getReviewByID
+      description: Returns a review for a given review ID.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - reviews
+      security:
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Review'
+          description: ''
+    put:
+      operationId: updateReview
+      description: Updates a review for a given review ID.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - reviews
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Review'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Review'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Review'
+        required: true
+      security:
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Review'
+          description: ''
+    patch:
+      operationId: partialUpdateReview
+      description: Partially updates a review for a given review ID.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - reviews
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchedReview'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/PatchedReview'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/PatchedReview'
+      security:
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Review'
+          description: ''
+    delete:
+      operationId: deleteReview
+      description: Deletes a review from the database.
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+      tags:
+      - reviews
+      security:
+      - basicAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/reviews/doi/{doi}/:
+    get:
+      operationId: getReviewsByDatasetDOI
+      description: Returns all reviews for a given dataset DOI.
+      parameters:
+      - in: path
+        name: doi
+        schema:
+          type: string
+        required: true
+      tags:
+      - reviews
+      security:
+      - basicAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Review'
+          description: ''
+  /api/reviews/fetch/:
     post:
       operationId: fetchDatasetFromDOI
       description: Fetches a dataset from a Dataverse installation and adds it to
@@ -30,7 +519,7 @@ paths:
         description: URL to the dataset
         required: true
       tags:
-      - dataset
+      - reviews
       security:
       - basicAuth: []
       responses:
@@ -40,294 +529,18 @@ paths:
               schema:
                 $ref: '#/components/schemas/Review'
           description: ''
-  /api/field/{id}/:
-    get:
-      operationId: getFieldByID
-      description: Returns a field for a given field ID.
-      parameters:
-      - in: path
-        name: id
-        schema:
-          type: string
-        required: true
-      tags:
-      - field
-      security:
-      - basicAuth: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Field'
-          description: ''
-    put:
-      operationId: updateField
-      description: Updates a field for a given field ID.
-      parameters:
-      - in: path
-        name: id
-        schema:
-          type: string
-        required: true
-      tags:
-      - field
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Field'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Field'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/Field'
-        required: true
-      security:
-      - basicAuth: []
-      responses:
-        '200':
-          description: No response body
-  /api/files/:
-    post:
-      operationId: addFile
-      description: Adds a new file to the database.
-      tags:
-      - files
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/File'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/File'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/File'
-        required: true
-      security:
-      - basicAuth: []
-      responses:
-        '200':
-          description: No response body
-  /api/files/{id}/:
-    get:
-      operationId: getFileById
-      description: Returns a file for a given file ID.
-      parameters:
-      - in: path
-        name: id
-        schema:
-          type: string
-        required: true
-      tags:
-      - files
-      security:
-      - basicAuth: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/File'
-          description: ''
-  /api/files/list/:
-    get:
-      operationId: getFiles
-      description: Returns all files.
-      tags:
-      - files
-      security:
-      - basicAuth: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/File'
-          description: ''
-  /api/review/:
-    post:
-      operationId: addReview
-      description: Adds a new review to the database.
-      tags:
-      - review
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Review'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Review'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/Review'
-        required: true
-      security:
-      - basicAuth: []
-      responses:
-        '200':
-          description: No response body
-  /api/review/{id}/:
-    get:
-      operationId: getReviewByID
-      description: Returns a review for a given review ID.
-      parameters:
-      - in: path
-        name: id
-        schema:
-          type: string
-        required: true
-      tags:
-      - review
-      security:
-      - basicAuth: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Review'
-          description: ''
-    put:
-      operationId: updateReview
-      description: Updates a review for a given review ID.
-      parameters:
-      - in: path
-        name: id
-        schema:
-          type: string
-        required: true
-      tags:
-      - review
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Review'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Review'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/Review'
-        required: true
-      security:
-      - basicAuth: []
-      responses:
-        '200':
-          description: No response body
-    delete:
-      operationId: deleteReview
-      description: Deletes a review from the database.
-      parameters:
-      - in: path
-        name: id
-        schema:
-          type: string
-        required: true
-      tags:
-      - review
-      security:
-      - basicAuth: []
-      responses:
-        '204':
-          description: No response body
-  /api/review/{id}/files/:
-    get:
-      operationId: getFilesByReviewId
-      description: Returns all files for a given review ID.
-      parameters:
-      - in: path
-        name: id
-        schema:
-          type: string
-        required: true
-      tags:
-      - review
-      security:
-      - basicAuth: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/File'
-          description: ''
-  /api/review/{id}/stats/:
-    get:
-      operationId: getFieldCount
-      description: Returns the number of fields for a given review ID.
-      parameters:
-      - in: path
-        name: id
-        schema:
-          type: string
-        required: true
-      tags:
-      - review
-      security:
-      - basicAuth: []
-      responses:
-        '200':
-          description: No response body
-  /api/review/doi/{doi}/:
-    get:
-      operationId: getReviewsByDatasetDOI
-      description: Returns all reviews for a given dataset DOI.
-      parameters:
-      - in: path
-        name: doi
-        schema:
-          type: string
-        required: true
-      tags:
-      - review
-      security:
-      - basicAuth: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Review'
-          description: ''
-  /api/review/list/:
-    get:
-      operationId: getReviews
-      description: Returns all reviews.
-      tags:
-      - review
-      security:
-      - basicAuth: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Review'
-          description: ''
-  /api/review/reviewer/{reviewerid}/:
+  /api/reviews/reviewer/{id}/:
     get:
       operationId: getReviewsByReviewer
       description: Returns all reviews for a given reviewer ID.
       parameters:
       - in: path
-        name: reviewerid
+        name: id
         schema:
           type: string
         required: true
       tags:
-      - review
+      - reviews
       security:
       - basicAuth: []
       responses:
@@ -338,67 +551,6 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Review'
-          description: ''
-  /api/reviewers/:
-    post:
-      operationId: addReviewer
-      description: Adds a new reviewer to the database.
-      tags:
-      - reviewers
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/Reviewer'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Reviewer'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/Reviewer'
-        required: true
-      security:
-      - basicAuth: []
-      responses:
-        '200':
-          description: No response body
-  /api/reviewers/{id}/:
-    get:
-      operationId: getReviewerById
-      description: Returns a reviewer for a given reviewer ID.
-      parameters:
-      - in: path
-        name: id
-        schema:
-          type: string
-        required: true
-      tags:
-      - reviewers
-      security:
-      - basicAuth: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Reviewer'
-          description: ''
-  /api/reviewers/list/:
-    get:
-      operationId: getReviewers
-      description: Returns all reviewers.
-      tags:
-      - reviewers
-      security:
-      - basicAuth: []
-      responses:
-        '200':
-          content:
-            application/json:
-              schema:
-                type: array
-                items:
-                  $ref: '#/components/schemas/Reviewer'
           description: ''
 components:
   schemas:
@@ -534,6 +686,122 @@ components:
       - name
       - primitives
       - review
+    PatchedField:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+        description:
+          type: string
+        accepted:
+          type: boolean
+          nullable: true
+        chat:
+          type: object
+          additionalProperties: {}
+        value:
+          type: string
+        history:
+          type: object
+          additionalProperties: {}
+        field_type:
+          type: string
+          readOnly: true
+        metadatablock:
+          type: string
+          format: uuid
+          nullable: true
+        compound:
+          type: string
+          format: uuid
+          nullable: true
+    PatchedFile:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        name:
+          type: string
+          maxLength: 100
+        description:
+          type: string
+        accepted:
+          type: boolean
+        chat:
+          type: object
+          additionalProperties: {}
+        field_type:
+          type: string
+          readOnly: true
+        review:
+          type: string
+          format: uuid
+    PatchedReview:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          readOnly: true
+        metadatablocks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Metadatablock'
+          readOnly: true
+        files:
+          type: array
+          items:
+            $ref: '#/components/schemas/File'
+          readOnly: true
+        doi:
+          type: string
+          maxLength: 100
+        site_url:
+          type: string
+          format: uri
+          nullable: true
+          maxLength: 200
+        revision:
+          type: integer
+          maximum: 32767
+          minimum: 0
+        accepted:
+          type: boolean
+        date:
+          type: string
+          format: date-time
+        reviewer:
+          type: integer
+          nullable: true
+    PatchedReviewer:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        username:
+          type: string
+          maxLength: 100
+        first_name:
+          type: string
+          maxLength: 100
+        last_name:
+          type: string
+          maxLength: 100
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        affiliation:
+          type: string
+          maxLength: 100
     Review:
       type: object
       properties:
