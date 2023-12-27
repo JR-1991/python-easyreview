@@ -372,7 +372,7 @@ paths:
       responses:
         '200':
           description: No response body
-  /api/reviews/{id}/:
+  /api/reviews/{id}:
     get:
       operationId: getReviewByID
       description: Returns a review for a given review ID.
@@ -472,7 +472,7 @@ paths:
       responses:
         '204':
           description: No response body
-  /api/reviews/doi/{doi}/:
+  /api/reviews/doi/{doi}:
     get:
       operationId: getReviewsByDatasetDOI
       description: Returns all reviews for a given dataset DOI.
@@ -529,7 +529,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Review'
           description: ''
-  /api/reviews/reviewer/{id}/:
+  /api/reviews/reviewer/{id}:
     get:
       operationId: getReviewsByReviewer
       description: Returns all reviews for a given reviewer ID.
