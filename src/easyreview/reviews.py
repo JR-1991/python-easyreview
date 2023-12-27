@@ -5,7 +5,7 @@ from easyreview import utils
 from easyreview.models import components, errors, operations
 from typing import List, Optional
 
-class Review:
+class Reviews:
     sdk_configuration: SDKConfiguration
 
     def __init__(self, sdk_config: SDKConfiguration) -> None:
@@ -13,17 +13,84 @@ class Review:
         
     
     
-    def add_review(self, request: components.ReviewInput) -> operations.AddReviewResponse:
-        r"""Adds a new review to the database."""
+    def get_reviews(self) -> operations.GetReviewsResponse:
+        r"""Returns all reviews"""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = base_url + '/api/review/'
+        url = base_url + '/api/reviews/'
         headers = {}
-        req_content_type, data, form = utils.serialize_request_body(request, components.ReviewInput, "request", False, False, 'json')
-        if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
-            headers['content-type'] = req_content_type
-        if data is None and form is None:
-            raise Exception('request body is required')
+        headers['Accept'] = 'application/json'
+        headers['user-agent'] = self.sdk_configuration.user_agent
+        
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
+        
+        http_res = client.request('GET', url, headers=headers)
+        content_type = http_res.headers.get('Content-Type')
+        
+        res = operations.GetReviewsResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
+        
+        if http_res.status_code == 200:
+            if utils.match_content_type(content_type, 'application/json'):
+                out = utils.unmarshal_json(http_res.text, Optional[List[components.Review]])
+                res.reviews = out
+            else:
+                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
+        elif http_res.status_code >= 400 and http_res.status_code < 500 or http_res.status_code >= 500 and http_res.status_code < 600:
+            raise errors.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
+
+        return res
+
+    
+    
+    def get_files_by_review_id(self, id: str) -> operations.GetFilesByReviewIDResponse:
+        r"""Returns all files for a given review ID."""
+        request = operations.GetFilesByReviewIDRequest(
+            id=id,
+        )
+        
+        base_url = utils.template_url(*self.sdk_configuration.get_server_details())
+        
+        url = utils.generate_url(operations.GetFilesByReviewIDRequest, base_url, '/api/reviews/{id}/files/', request)
+        headers = {}
+        headers['Accept'] = 'application/json'
+        headers['user-agent'] = self.sdk_configuration.user_agent
+        
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
+        
+        http_res = client.request('GET', url, headers=headers)
+        content_type = http_res.headers.get('Content-Type')
+        
+        res = operations.GetFilesByReviewIDResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
+        
+        if http_res.status_code == 200:
+            if utils.match_content_type(content_type, 'application/json'):
+                out = utils.unmarshal_json(http_res.text, Optional[List[components.File]])
+                res.files = out
+            else:
+                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
+        elif http_res.status_code >= 400 and http_res.status_code < 500 or http_res.status_code >= 500 and http_res.status_code < 600:
+            raise errors.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
+
+        return res
+
+    
+    
+    def get_field_count(self, id: str) -> operations.GetFieldCountResponse:
+        r"""Returns the number of fields for a given review ID."""
+        request = operations.GetFieldCountRequest(
+            id=id,
+        )
+        
+        base_url = utils.template_url(*self.sdk_configuration.get_server_details())
+        
+        url = utils.generate_url(operations.GetFieldCountRequest, base_url, '/api/reviews/{id}/stats/', request)
+        headers = {}
         headers['Accept'] = '*/*'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
@@ -32,10 +99,10 @@ class Review:
         else:
             client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
-        http_res = client.request('POST', url, data=data, files=form, headers=headers)
+        http_res = client.request('GET', url, headers=headers)
         content_type = http_res.headers.get('Content-Type')
         
-        res = operations.AddReviewResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
+        res = operations.GetFieldCountResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 200:
             pass
@@ -54,7 +121,7 @@ class Review:
         
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(operations.GetReviewByIDRequest, base_url, '/api/review/{id}/', request)
+        url = utils.generate_url(operations.GetReviewByIDRequest, base_url, '/api/reviews/{id}/', request)
         headers = {}
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
@@ -91,14 +158,14 @@ class Review:
         
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(operations.UpdateReviewRequest, base_url, '/api/review/{id}/', request)
+        url = utils.generate_url(operations.UpdateReviewRequest, base_url, '/api/reviews/{id}/', request)
         headers = {}
         req_content_type, data, form = utils.serialize_request_body(request, operations.UpdateReviewRequest, "review", False, False, 'json')
         if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
             headers['content-type'] = req_content_type
         if data is None and form is None:
             raise Exception('request body is required')
-        headers['Accept'] = '*/*'
+        headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
         if callable(self.sdk_configuration.security):
@@ -112,7 +179,51 @@ class Review:
         res = operations.UpdateReviewResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 200:
-            pass
+            if utils.match_content_type(content_type, 'application/json'):
+                out = utils.unmarshal_json(http_res.text, Optional[components.Review])
+                res.review = out
+            else:
+                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
+        elif http_res.status_code >= 400 and http_res.status_code < 500 or http_res.status_code >= 500 and http_res.status_code < 600:
+            raise errors.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
+
+        return res
+
+    
+    
+    def partial_update_review(self, id: str, patched_review: Optional[components.PatchedReview] = None) -> operations.PartialUpdateReviewResponse:
+        r"""Partially updates a review for a given review ID."""
+        request = operations.PartialUpdateReviewRequest(
+            id=id,
+            patched_review=patched_review,
+        )
+        
+        base_url = utils.template_url(*self.sdk_configuration.get_server_details())
+        
+        url = utils.generate_url(operations.PartialUpdateReviewRequest, base_url, '/api/reviews/{id}/', request)
+        headers = {}
+        req_content_type, data, form = utils.serialize_request_body(request, operations.PartialUpdateReviewRequest, "patched_review", False, True, 'json')
+        if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
+            headers['content-type'] = req_content_type
+        headers['Accept'] = 'application/json'
+        headers['user-agent'] = self.sdk_configuration.user_agent
+        
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
+        
+        http_res = client.request('PATCH', url, data=data, files=form, headers=headers)
+        content_type = http_res.headers.get('Content-Type')
+        
+        res = operations.PartialUpdateReviewResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
+        
+        if http_res.status_code == 200:
+            if utils.match_content_type(content_type, 'application/json'):
+                out = utils.unmarshal_json(http_res.text, Optional[components.Review])
+                res.review = out
+            else:
+                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
         elif http_res.status_code >= 400 and http_res.status_code < 500 or http_res.status_code >= 500 and http_res.status_code < 600:
             raise errors.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
 
@@ -128,7 +239,7 @@ class Review:
         
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(operations.DeleteReviewRequest, base_url, '/api/review/{id}/', request)
+        url = utils.generate_url(operations.DeleteReviewRequest, base_url, '/api/reviews/{id}/', request)
         headers = {}
         headers['Accept'] = '*/*'
         headers['user-agent'] = self.sdk_configuration.user_agent
@@ -152,74 +263,6 @@ class Review:
 
     
     
-    def get_files_by_review_id(self, id: str) -> operations.GetFilesByReviewIDResponse:
-        r"""Returns all files for a given review ID."""
-        request = operations.GetFilesByReviewIDRequest(
-            id=id,
-        )
-        
-        base_url = utils.template_url(*self.sdk_configuration.get_server_details())
-        
-        url = utils.generate_url(operations.GetFilesByReviewIDRequest, base_url, '/api/review/{id}/files/', request)
-        headers = {}
-        headers['Accept'] = 'application/json'
-        headers['user-agent'] = self.sdk_configuration.user_agent
-        
-        if callable(self.sdk_configuration.security):
-            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
-        else:
-            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
-        
-        http_res = client.request('GET', url, headers=headers)
-        content_type = http_res.headers.get('Content-Type')
-        
-        res = operations.GetFilesByReviewIDResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
-        
-        if http_res.status_code == 200:
-            if utils.match_content_type(content_type, 'application/json'):
-                out = utils.unmarshal_json(http_res.text, Optional[List[components.File]])
-                res.files = out
-            else:
-                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
-        elif http_res.status_code >= 400 and http_res.status_code < 500 or http_res.status_code >= 500 and http_res.status_code < 600:
-            raise errors.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
-
-        return res
-
-    
-    
-    def get_field_count(self, id: str) -> operations.GetFieldCountResponse:
-        r"""Returns the number of fields for a given review ID."""
-        request = operations.GetFieldCountRequest(
-            id=id,
-        )
-        
-        base_url = utils.template_url(*self.sdk_configuration.get_server_details())
-        
-        url = utils.generate_url(operations.GetFieldCountRequest, base_url, '/api/review/{id}/stats/', request)
-        headers = {}
-        headers['Accept'] = '*/*'
-        headers['user-agent'] = self.sdk_configuration.user_agent
-        
-        if callable(self.sdk_configuration.security):
-            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
-        else:
-            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
-        
-        http_res = client.request('GET', url, headers=headers)
-        content_type = http_res.headers.get('Content-Type')
-        
-        res = operations.GetFieldCountResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
-        
-        if http_res.status_code == 200:
-            pass
-        elif http_res.status_code >= 400 and http_res.status_code < 500 or http_res.status_code >= 500 and http_res.status_code < 600:
-            raise errors.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
-
-        return res
-
-    
-    
     def get_reviews_by_dataset_doi(self, doi: str) -> operations.GetReviewsByDatasetDOIResponse:
         r"""Returns all reviews for a given dataset DOI."""
         request = operations.GetReviewsByDatasetDOIRequest(
@@ -228,7 +271,7 @@ class Review:
         
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(operations.GetReviewsByDatasetDOIRequest, base_url, '/api/review/doi/{doi}/', request)
+        url = utils.generate_url(operations.GetReviewsByDatasetDOIRequest, base_url, '/api/reviews/doi/{doi}/', request)
         headers = {}
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
@@ -256,12 +299,19 @@ class Review:
 
     
     
-    def get_reviews(self) -> operations.GetReviewsResponse:
-        r"""Returns all reviews."""
+    def fetch_dataset_from_doi(self, doi: str, site_url: str, api_token: Optional[str] = None) -> operations.FetchDatasetFromDOIResponse:
+        r"""Fetches a dataset from a Dataverse installation and adds it to the database. This function will also check whether the given dataset is already present in the database and thus returns the entry. If not, a new one will be created and returned from this endpoint."""
+        request = operations.FetchDatasetFromDOIRequest(
+            doi=doi,
+            site_url=site_url,
+            api_token=api_token,
+        )
+        
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = base_url + '/api/review/list/'
+        url = base_url + '/api/reviews/fetch/'
         headers = {}
+        query_params = utils.get_query_params(operations.FetchDatasetFromDOIRequest, request)
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
@@ -270,15 +320,15 @@ class Review:
         else:
             client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
-        http_res = client.request('GET', url, headers=headers)
+        http_res = client.request('POST', url, params=query_params, headers=headers)
         content_type = http_res.headers.get('Content-Type')
         
-        res = operations.GetReviewsResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
+        res = operations.FetchDatasetFromDOIResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 200:
             if utils.match_content_type(content_type, 'application/json'):
-                out = utils.unmarshal_json(http_res.text, Optional[List[components.Review]])
-                res.reviews = out
+                out = utils.unmarshal_json(http_res.text, Optional[components.Review])
+                res.review = out
             else:
                 raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
         elif http_res.status_code >= 400 and http_res.status_code < 500 or http_res.status_code >= 500 and http_res.status_code < 600:
@@ -288,15 +338,15 @@ class Review:
 
     
     
-    def get_reviews_by_reviewer(self, reviewerid: str) -> operations.GetReviewsByReviewerResponse:
+    def get_reviews_by_reviewer(self, id: str) -> operations.GetReviewsByReviewerResponse:
         r"""Returns all reviews for a given reviewer ID."""
         request = operations.GetReviewsByReviewerRequest(
-            reviewerid=reviewerid,
+            id=id,
         )
         
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(operations.GetReviewsByReviewerRequest, base_url, '/api/review/reviewer/{reviewerid}/', request)
+        url = utils.generate_url(operations.GetReviewsByReviewerRequest, base_url, '/api/reviews/reviewer/{id}/', request)
         headers = {}
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent

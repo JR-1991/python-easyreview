@@ -3,25 +3,27 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
-from ...models.components import review as components_review
-from typing import List, Optional
+from ...models.components import field as components_field
+from ...models.components import patchedfield as components_patchedfield
+from typing import Optional
 
 
 @dataclasses.dataclass
-class GetReviewsByReviewerRequest:
+class PartialUpdateFieldRequest:
     id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'id', 'style': 'simple', 'explode': False }})
+    patched_field: Optional[components_patchedfield.PatchedField] = dataclasses.field(default=None, metadata={'request': { 'media_type': 'application/json' }})
     
 
 
 
 @dataclasses.dataclass
-class GetReviewsByReviewerResponse:
+class PartialUpdateFieldResponse:
     content_type: str = dataclasses.field()
     r"""HTTP response content type for this operation"""
     raw_response: requests_http.Response = dataclasses.field()
     r"""Raw HTTP response; suitable for custom response parsing"""
     status_code: int = dataclasses.field()
     r"""HTTP response status code for this operation"""
-    reviews: Optional[List[components_review.Review]] = dataclasses.field(default=None)
+    field: Optional[components_field.Field] = dataclasses.field(default=None)
     
 
