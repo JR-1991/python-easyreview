@@ -10,9 +10,9 @@ s = easyreview.EasyReview(
 )
 
 
-res = s.dataset.fetch_dataset_from_doi(doi='string', site_url='string', api_token='string')
+res = s.fields.get_field_by_id(id='string')
 
-if res.review is not None:
+if res.field is not None:
     # handle response
     pass
 ```

@@ -3,7 +3,9 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
+from ...models.components import field as components_field
 from ...models.components import field_input as components_field_input
+from typing import Optional
 
 
 @dataclasses.dataclass
@@ -22,5 +24,6 @@ class UpdateFieldResponse:
     r"""Raw HTTP response; suitable for custom response parsing"""
     status_code: int = dataclasses.field()
     r"""HTTP response status code for this operation"""
+    field: Optional[components_field.Field] = dataclasses.field(default=None)
     
 

@@ -3,7 +3,9 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
+from ...models.components import review as components_review
 from ...models.components import review_input as components_review_input
+from typing import Optional
 
 
 @dataclasses.dataclass
@@ -22,5 +24,6 @@ class UpdateReviewResponse:
     r"""Raw HTTP response; suitable for custom response parsing"""
     status_code: int = dataclasses.field()
     r"""HTTP response status code for this operation"""
+    review: Optional[components_review.Review] = dataclasses.field(default=None)
     
 

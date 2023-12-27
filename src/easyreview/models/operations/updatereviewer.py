@@ -4,11 +4,20 @@ from __future__ import annotations
 import dataclasses
 import requests as requests_http
 from ...models.components import reviewer as components_reviewer
+from ...models.components import reviewer_input as components_reviewer_input
 from typing import Optional
 
 
 @dataclasses.dataclass
-class AddReviewerResponse:
+class UpdateReviewerRequest:
+    id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'id', 'style': 'simple', 'explode': False }})
+    reviewer: components_reviewer_input.ReviewerInput = dataclasses.field(metadata={'request': { 'media_type': 'application/json' }})
+    
+
+
+
+@dataclasses.dataclass
+class UpdateReviewerResponse:
     content_type: str = dataclasses.field()
     r"""HTTP response content type for this operation"""
     raw_response: requests_http.Response = dataclasses.field()

@@ -1,4 +1,4 @@
-# GetReviewsByReviewerRequest
+# DeleteReviewerRequest
 
 
 ## Fields

@@ -13,6 +13,38 @@ class Reviewers:
         
     
     
+    def get_reviewers(self) -> operations.GetReviewersResponse:
+        r"""Returns all reviewers"""
+        base_url = utils.template_url(*self.sdk_configuration.get_server_details())
+        
+        url = base_url + '/api/reviewers/'
+        headers = {}
+        headers['Accept'] = 'application/json'
+        headers['user-agent'] = self.sdk_configuration.user_agent
+        
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
+        
+        http_res = client.request('GET', url, headers=headers)
+        content_type = http_res.headers.get('Content-Type')
+        
+        res = operations.GetReviewersResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
+        
+        if http_res.status_code == 200:
+            if utils.match_content_type(content_type, 'application/json'):
+                out = utils.unmarshal_json(http_res.text, Optional[List[components.Reviewer]])
+                res.reviewers = out
+            else:
+                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
+        elif http_res.status_code >= 400 and http_res.status_code < 500 or http_res.status_code >= 500 and http_res.status_code < 600:
+            raise errors.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
+
+        return res
+
+    
+    
     def add_reviewer(self, request: components.ReviewerInput) -> operations.AddReviewerResponse:
         r"""Adds a new reviewer to the database."""
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
@@ -24,7 +56,7 @@ class Reviewers:
             headers['content-type'] = req_content_type
         if data is None and form is None:
             raise Exception('request body is required')
-        headers['Accept'] = '*/*'
+        headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
         if callable(self.sdk_configuration.security):
@@ -37,8 +69,12 @@ class Reviewers:
         
         res = operations.AddReviewerResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
-        if http_res.status_code == 200:
-            pass
+        if http_res.status_code == 201:
+            if utils.match_content_type(content_type, 'application/json'):
+                out = utils.unmarshal_json(http_res.text, Optional[components.Reviewer])
+                res.reviewer = out
+            else:
+                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
         elif http_res.status_code >= 400 and http_res.status_code < 500 or http_res.status_code >= 500 and http_res.status_code < 600:
             raise errors.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
 
@@ -54,7 +90,7 @@ class Reviewers:
         
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(operations.GetReviewerByIDRequest, base_url, '/api/reviewers/{id}/', request)
+        url = utils.generate_url(operations.GetReviewerByIDRequest, base_url, '/api/reviewers/{id}', request)
         headers = {}
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
@@ -82,12 +118,22 @@ class Reviewers:
 
     
     
-    def get_reviewers(self) -> operations.GetReviewersResponse:
-        r"""Returns all reviewers."""
+    def update_reviewer(self, id: str, reviewer: components.ReviewerInput) -> operations.UpdateReviewerResponse:
+        r"""Updates a reviewer for a given reviewer ID."""
+        request = operations.UpdateReviewerRequest(
+            id=id,
+            reviewer=reviewer,
+        )
+        
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = base_url + '/api/reviewers/list/'
+        url = utils.generate_url(operations.UpdateReviewerRequest, base_url, '/api/reviewers/{id}', request)
         headers = {}
+        req_content_type, data, form = utils.serialize_request_body(request, operations.UpdateReviewerRequest, "reviewer", False, False, 'json')
+        if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
+            headers['content-type'] = req_content_type
+        if data is None and form is None:
+            raise Exception('request body is required')
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
         
@@ -96,17 +142,89 @@ class Reviewers:
         else:
             client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
         
-        http_res = client.request('GET', url, headers=headers)
+        http_res = client.request('PUT', url, data=data, files=form, headers=headers)
         content_type = http_res.headers.get('Content-Type')
         
-        res = operations.GetReviewersResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
+        res = operations.UpdateReviewerResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
         
         if http_res.status_code == 200:
             if utils.match_content_type(content_type, 'application/json'):
-                out = utils.unmarshal_json(http_res.text, Optional[List[components.Reviewer]])
-                res.reviewers = out
+                out = utils.unmarshal_json(http_res.text, Optional[components.Reviewer])
+                res.reviewer = out
             else:
                 raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
+        elif http_res.status_code >= 400 and http_res.status_code < 500 or http_res.status_code >= 500 and http_res.status_code < 600:
+            raise errors.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
+
+        return res
+
+    
+    
+    def partial_update_reviewer(self, id: str, patched_reviewer: Optional[components.PatchedReviewer] = None) -> operations.PartialUpdateReviewerResponse:
+        r"""Partially updates a reviewer for a given reviewer ID."""
+        request = operations.PartialUpdateReviewerRequest(
+            id=id,
+            patched_reviewer=patched_reviewer,
+        )
+        
+        base_url = utils.template_url(*self.sdk_configuration.get_server_details())
+        
+        url = utils.generate_url(operations.PartialUpdateReviewerRequest, base_url, '/api/reviewers/{id}', request)
+        headers = {}
+        req_content_type, data, form = utils.serialize_request_body(request, operations.PartialUpdateReviewerRequest, "patched_reviewer", False, True, 'json')
+        if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
+            headers['content-type'] = req_content_type
+        headers['Accept'] = 'application/json'
+        headers['user-agent'] = self.sdk_configuration.user_agent
+        
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
+        
+        http_res = client.request('PATCH', url, data=data, files=form, headers=headers)
+        content_type = http_res.headers.get('Content-Type')
+        
+        res = operations.PartialUpdateReviewerResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
+        
+        if http_res.status_code == 200:
+            if utils.match_content_type(content_type, 'application/json'):
+                out = utils.unmarshal_json(http_res.text, Optional[components.Reviewer])
+                res.reviewer = out
+            else:
+                raise errors.SDKError(f'unknown content-type received: {content_type}', http_res.status_code, http_res.text, http_res)
+        elif http_res.status_code >= 400 and http_res.status_code < 500 or http_res.status_code >= 500 and http_res.status_code < 600:
+            raise errors.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
+
+        return res
+
+    
+    
+    def delete_reviewer(self, id: str) -> operations.DeleteReviewerResponse:
+        r"""Deletes a reviewer from the database."""
+        request = operations.DeleteReviewerRequest(
+            id=id,
+        )
+        
+        base_url = utils.template_url(*self.sdk_configuration.get_server_details())
+        
+        url = utils.generate_url(operations.DeleteReviewerRequest, base_url, '/api/reviewers/{id}', request)
+        headers = {}
+        headers['Accept'] = '*/*'
+        headers['user-agent'] = self.sdk_configuration.user_agent
+        
+        if callable(self.sdk_configuration.security):
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security())
+        else:
+            client = utils.configure_security_client(self.sdk_configuration.client, self.sdk_configuration.security)
+        
+        http_res = client.request('DELETE', url, headers=headers)
+        content_type = http_res.headers.get('Content-Type')
+        
+        res = operations.DeleteReviewerResponse(status_code=http_res.status_code, content_type=content_type, raw_response=http_res)
+        
+        if http_res.status_code == 204:
+            pass
         elif http_res.status_code >= 400 and http_res.status_code < 500 or http_res.status_code >= 500 and http_res.status_code < 600:
             raise errors.SDKError('API error occurred', http_res.status_code, http_res.text, http_res)
 

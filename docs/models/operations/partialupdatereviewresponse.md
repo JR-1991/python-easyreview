@@ -1,4 +1,4 @@
-# UpdateReviewResponse
+# PartialUpdateReviewResponse
 
 
 ## Fields

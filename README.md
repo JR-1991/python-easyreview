@@ -31,9 +31,9 @@ s = easyreview.EasyReview(
 )
 
 
-res = s.dataset.fetch_dataset_from_doi(doi='string', site_url='string', api_token='string')
+res = s.fields.get_field_by_id(id='string')
 
-if res.review is not None:
+if res.field is not None:
     # handle response
     pass
 ```
@@ -42,38 +42,39 @@ if res.review is not None:
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
 
-### [dataset](docs/sdks/dataset/README.md)
+### [fields](docs/sdks/fields/README.md)
 
-* [fetch_dataset_from_doi](docs/sdks/dataset/README.md#fetch_dataset_from_doi) - Fetches a dataset from a Dataverse installation and adds it to the database. This function will also check whether the given dataset is already present in the database and thus returns the entry. If not, a new one will be created and returned from this endpoint.
-
-### [field](docs/sdks/field/README.md)
-
-* [get_field_by_id](docs/sdks/field/README.md#get_field_by_id) - Returns a field for a given field ID.
-* [update_field](docs/sdks/field/README.md#update_field) - Updates a field for a given field ID.
+* [get_field_by_id](docs/sdks/fields/README.md#get_field_by_id) - Returns a field for a given field ID.
+* [update_field](docs/sdks/fields/README.md#update_field) - Updates a field for a given field ID.
+* [partial_update_field](docs/sdks/fields/README.md#partial_update_field) - Updates a field for a given field ID.
 
 ### [files](docs/sdks/files/README.md)
 
-* [add_file](docs/sdks/files/README.md#add_file) - Adds a new file to the database.
 * [get_file_by_id](docs/sdks/files/README.md#get_file_by_id) - Returns a file for a given file ID.
-* [get_files](docs/sdks/files/README.md#get_files) - Returns all files.
-
-### [review](docs/sdks/review/README.md)
-
-* [add_review](docs/sdks/review/README.md#add_review) - Adds a new review to the database.
-* [get_review_by_id](docs/sdks/review/README.md#get_review_by_id) - Returns a review for a given review ID.
-* [update_review](docs/sdks/review/README.md#update_review) - Updates a review for a given review ID.
-* [delete_review](docs/sdks/review/README.md#delete_review) - Deletes a review from the database.
-* [get_files_by_review_id](docs/sdks/review/README.md#get_files_by_review_id) - Returns all files for a given review ID.
-* [get_field_count](docs/sdks/review/README.md#get_field_count) - Returns the number of fields for a given review ID.
-* [get_reviews_by_dataset_doi](docs/sdks/review/README.md#get_reviews_by_dataset_doi) - Returns all reviews for a given dataset DOI.
-* [get_reviews](docs/sdks/review/README.md#get_reviews) - Returns all reviews.
-* [get_reviews_by_reviewer](docs/sdks/review/README.md#get_reviews_by_reviewer) - Returns all reviews for a given reviewer ID.
+* [update_file](docs/sdks/files/README.md#update_file) - Updates a file for a given file ID.
+* [partial_update_file](docs/sdks/files/README.md#partial_update_file) - Updates a file for a given file ID.
 
 ### [reviewers](docs/sdks/reviewers/README.md)
 
+* [get_reviewers](docs/sdks/reviewers/README.md#get_reviewers) - Returns all reviewers
 * [add_reviewer](docs/sdks/reviewers/README.md#add_reviewer) - Adds a new reviewer to the database.
 * [get_reviewer_by_id](docs/sdks/reviewers/README.md#get_reviewer_by_id) - Returns a reviewer for a given reviewer ID.
-* [get_reviewers](docs/sdks/reviewers/README.md#get_reviewers) - Returns all reviewers.
+* [update_reviewer](docs/sdks/reviewers/README.md#update_reviewer) - Updates a reviewer for a given reviewer ID.
+* [partial_update_reviewer](docs/sdks/reviewers/README.md#partial_update_reviewer) - Partially updates a reviewer for a given reviewer ID.
+* [delete_reviewer](docs/sdks/reviewers/README.md#delete_reviewer) - Deletes a reviewer from the database.
+
+### [reviews](docs/sdks/reviews/README.md)
+
+* [get_reviews](docs/sdks/reviews/README.md#get_reviews) - Returns all reviews
+* [get_files_by_review_id](docs/sdks/reviews/README.md#get_files_by_review_id) - Returns all files for a given review ID.
+* [get_field_count](docs/sdks/reviews/README.md#get_field_count) - Returns the number of fields for a given review ID.
+* [get_review_by_id](docs/sdks/reviews/README.md#get_review_by_id) - Returns a review for a given review ID.
+* [update_review](docs/sdks/reviews/README.md#update_review) - Updates a review for a given review ID.
+* [partial_update_review](docs/sdks/reviews/README.md#partial_update_review) - Partially updates a review for a given review ID.
+* [delete_review](docs/sdks/reviews/README.md#delete_review) - Deletes a review from the database.
+* [get_reviews_by_dataset_doi](docs/sdks/reviews/README.md#get_reviews_by_dataset_doi) - Returns all reviews for a given dataset DOI.
+* [fetch_dataset_from_doi](docs/sdks/reviews/README.md#fetch_dataset_from_doi) - Fetches a dataset from a Dataverse installation and adds it to the database. This function will also check whether the given dataset is already present in the database and thus returns the entry. If not, a new one will be created and returned from this endpoint.
+* [get_reviews_by_reviewer](docs/sdks/reviews/README.md#get_reviews_by_reviewer) - Returns all reviews for a given reviewer ID.
 <!-- End Available Resources and Operations [operations] -->
 
 <!-- Start Error Handling [errors] -->
@@ -100,12 +101,12 @@ s = easyreview.EasyReview(
 
 res = None
 try:
-    res = s.dataset.fetch_dataset_from_doi(doi='string', site_url='string', api_token='string')
+    res = s.fields.get_field_by_id(id='string')
 except errors.SDKError as e:
     print(e)  # handle exception
     raise(e)
 
-if res.review is not None:
+if res.field is not None:
     # handle response
     pass
 ```
@@ -136,9 +137,9 @@ s = easyreview.EasyReview(
 )
 
 
-res = s.dataset.fetch_dataset_from_doi(doi='string', site_url='string', api_token='string')
+res = s.fields.get_field_by_id(id='string')
 
-if res.review is not None:
+if res.field is not None:
     # handle response
     pass
 ```
@@ -159,9 +160,9 @@ s = easyreview.EasyReview(
 )
 
 
-res = s.dataset.fetch_dataset_from_doi(doi='string', site_url='string', api_token='string')
+res = s.fields.get_field_by_id(id='string')
 
-if res.review is not None:
+if res.field is not None:
     # handle response
     pass
 ```
@@ -206,9 +207,9 @@ s = easyreview.EasyReview(
 )
 
 
-res = s.dataset.fetch_dataset_from_doi(doi='string', site_url='string', api_token='string')
+res = s.fields.get_field_by_id(id='string')
 
-if res.review is not None:
+if res.field is not None:
     # handle response
     pass
 ```

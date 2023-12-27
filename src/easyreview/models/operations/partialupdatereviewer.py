@@ -3,12 +3,21 @@
 from __future__ import annotations
 import dataclasses
 import requests as requests_http
+from ...models.components import patchedreviewer as components_patchedreviewer
 from ...models.components import reviewer as components_reviewer
 from typing import Optional
 
 
 @dataclasses.dataclass
-class AddReviewerResponse:
+class PartialUpdateReviewerRequest:
+    id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'id', 'style': 'simple', 'explode': False }})
+    patched_reviewer: Optional[components_patchedreviewer.PatchedReviewer] = dataclasses.field(default=None, metadata={'request': { 'media_type': 'application/json' }})
+    
+
+
+
+@dataclasses.dataclass
+class PartialUpdateReviewerResponse:
     content_type: str = dataclasses.field()
     r"""HTTP response content type for this operation"""
     raw_response: requests_http.Response = dataclasses.field()

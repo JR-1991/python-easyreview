@@ -3,56 +3,9 @@
 
 ### Available Operations
 
-* [add_file](#add_file) - Adds a new file to the database.
 * [get_file_by_id](#get_file_by_id) - Returns a file for a given file ID.
-* [get_files](#get_files) - Returns all files.
-
-## add_file
-
-Adds a new file to the database.
-
-### Example Usage
-
-```python
-import easyreview
-from easyreview.models import components
-
-s = easyreview.EasyReview(
-    security=components.Security(
-        username="<YOUR_USERNAME_HERE>",
-    ),
-)
-
-req = components.FileInput(
-    name='string',
-    chat={
-        'key': 'string',
-    },
-    review='7ab63896-cf8d-433f-b203-1872fb817ffe',
-)
-
-res = s.files.add_file(req)
-
-if res.status_code == 200:
-    # handle response
-    pass
-```
-
-### Parameters
-
-| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  |
-| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| `request`                                                    | [components.FileInput](../../models/components/fileinput.md) | :heavy_check_mark:                                           | The request object to use for the request.                   |
-
-
-### Response
-
-**[operations.AddFileResponse](../../models/operations/addfileresponse.md)**
-### Errors
-
-| Error Object    | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| errors.SDKError | 4x-5xx          | */*             |
+* [update_file](#update_file) - Updates a file for a given file ID.
+* [partial_update_file](#partial_update_file) - Updates a file for a given file ID.
 
 ## get_file_by_id
 
@@ -94,15 +47,15 @@ if res.file is not None:
 | --------------- | --------------- | --------------- |
 | errors.SDKError | 4x-5xx          | */*             |
 
-## get_files
+## update_file
 
-Returns all files.
+Updates a file for a given file ID.
 
 ### Example Usage
 
 ```python
 import easyreview
-from easyreview.models import components
+from easyreview.models import components, operations
 
 s = easyreview.EasyReview(
     security=components.Security(
@@ -111,17 +64,75 @@ s = easyreview.EasyReview(
 )
 
 
-res = s.files.get_files()
+res = s.files.update_file(id='string', file=components.FileInput(
+    name='string',
+    chat={
+        'key': 'string',
+    },
+    review='9923feda-142e-468a-afba-01ad05b1c7dc',
+))
 
-if res.files is not None:
+if res.file is not None:
     # handle response
     pass
 ```
 
+### Parameters
+
+| Parameter                                                    | Type                                                         | Required                                                     | Description                                                  |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| `id`                                                         | *str*                                                        | :heavy_check_mark:                                           | N/A                                                          |
+| `file`                                                       | [components.FileInput](../../models/components/fileinput.md) | :heavy_check_mark:                                           | N/A                                                          |
+
 
 ### Response
 
-**[operations.GetFilesResponse](../../models/operations/getfilesresponse.md)**
+**[operations.UpdateFileResponse](../../models/operations/updatefileresponse.md)**
+### Errors
+
+| Error Object    | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| errors.SDKError | 4x-5xx          | */*             |
+
+## partial_update_file
+
+Updates a file for a given file ID.
+
+### Example Usage
+
+```python
+import easyreview
+from easyreview.models import components, operations
+
+s = easyreview.EasyReview(
+    security=components.Security(
+        username="<YOUR_USERNAME_HERE>",
+    ),
+)
+
+
+res = s.files.partial_update_file(id='string', patched_file=components.PatchedFile(
+    chat={
+        'key': 'string',
+    },
+))
+
+if res.file is not None:
+    # handle response
+    pass
+```
+
+### Parameters
+
+| Parameter                                                                  | Type                                                                       | Required                                                                   | Description                                                                |
+| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `id`                                                                       | *str*                                                                      | :heavy_check_mark:                                                         | N/A                                                                        |
+| `patched_file`                                                             | [Optional[components.PatchedFile]](../../models/components/patchedfile.md) | :heavy_minus_sign:                                                         | N/A                                                                        |
+
+
+### Response
+
+**[operations.PartialUpdateFileResponse](../../models/operations/partialupdatefileresponse.md)**
 ### Errors
 
 | Error Object    | Status Code     | Content Type    |

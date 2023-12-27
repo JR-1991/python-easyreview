@@ -6,10 +6,14 @@ from .field_input import *
 from .file import *
 from .file_input import *
 from .metadatablock import *
+from .patchedfield import *
+from .patchedfile import *
+from .patchedreview import *
+from .patchedreviewer import *
 from .review import *
 from .review_input import *
 from .reviewer import *
 from .reviewer_input import *
 from .security import *
 
-__all__ = ["Compound","Field","FieldInput","File","FileInput","Metadatablock","Review","ReviewInput","Reviewer","ReviewerInput","Security"]
+__all__ = ["Compound","Field","FieldInput","File","FileInput","Metadatablock","PatchedField","PatchedFile","PatchedReview","PatchedReviewer","Review","ReviewInput","Reviewer","ReviewerInput","Security"]
