@@ -121,7 +121,7 @@ class Reviews:
         
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(operations.GetReviewByIDRequest, base_url, '/api/reviews/{id}/', request)
+        url = utils.generate_url(operations.GetReviewByIDRequest, base_url, '/api/reviews/{id}', request)
         headers = {}
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
@@ -158,7 +158,7 @@ class Reviews:
         
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(operations.UpdateReviewRequest, base_url, '/api/reviews/{id}/', request)
+        url = utils.generate_url(operations.UpdateReviewRequest, base_url, '/api/reviews/{id}', request)
         headers = {}
         req_content_type, data, form = utils.serialize_request_body(request, operations.UpdateReviewRequest, "review", False, False, 'json')
         if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
@@ -200,7 +200,7 @@ class Reviews:
         
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(operations.PartialUpdateReviewRequest, base_url, '/api/reviews/{id}/', request)
+        url = utils.generate_url(operations.PartialUpdateReviewRequest, base_url, '/api/reviews/{id}', request)
         headers = {}
         req_content_type, data, form = utils.serialize_request_body(request, operations.PartialUpdateReviewRequest, "patched_review", False, True, 'json')
         if req_content_type not in ('multipart/form-data', 'multipart/mixed'):
@@ -239,7 +239,7 @@ class Reviews:
         
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(operations.DeleteReviewRequest, base_url, '/api/reviews/{id}/', request)
+        url = utils.generate_url(operations.DeleteReviewRequest, base_url, '/api/reviews/{id}', request)
         headers = {}
         headers['Accept'] = '*/*'
         headers['user-agent'] = self.sdk_configuration.user_agent
@@ -271,7 +271,7 @@ class Reviews:
         
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(operations.GetReviewsByDatasetDOIRequest, base_url, '/api/reviews/doi/{doi}/', request)
+        url = utils.generate_url(operations.GetReviewsByDatasetDOIRequest, base_url, '/api/reviews/doi/{doi}', request)
         headers = {}
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
@@ -346,7 +346,7 @@ class Reviews:
         
         base_url = utils.template_url(*self.sdk_configuration.get_server_details())
         
-        url = utils.generate_url(operations.GetReviewsByReviewerRequest, base_url, '/api/reviews/reviewer/{id}/', request)
+        url = utils.generate_url(operations.GetReviewsByReviewerRequest, base_url, '/api/reviews/reviewer/{id}', request)
         headers = {}
         headers['Accept'] = 'application/json'
         headers['user-agent'] = self.sdk_configuration.user_agent
