@@ -1,27 +1,13 @@
-configVersion: 1.0.0
-management:
-  docChecksum: eadeb612f11fd940e08d62041e8104a8
-  docVersion: 0.0.1
-  speakeasyVersion: 1.129.1
-  generationVersion: 2.223.3
+configVersion: 2.0.0
 generation:
-  comments: {}
   baseServerUrl: http://localhost:8000
   sdkClassName: EasyReview
-  repoURL: https://github.com/JR-1991/python-easyreview.git
   maintainOpenAPIOrder: true
   usageSnippets:
     optionalPropertyRendering: withExample
+  useClassNamesForArrayFields: true
   fixes:
     nameResolutionDec2023: true
-  useClassNamesForArrayFields: true
-features:
-  python:
-    core: 4.3.1
-    flattening: 2.81.1
-    globalSecurity: 2.83.1
-    globalServerURLs: 2.82.1
-    inputOutputModels: 2.83.0
 python:
   version: 0.1.6
   author: Jan Range (EXC2075 SimTech, Univeristy of Stuttgart)
@@ -37,9 +23,6 @@ python:
       shared: models/components
       webhooks: models/webhooks
   inputModelSuffix: input
-  installationURL: https://github.com/JR-1991/python-easyreview.git
   maxMethodParams: 4
   outputModelSuffix: output
   packageName: easyreview
-  published: true
-  repoSubDirectory: .
