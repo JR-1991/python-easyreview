@@ -4,7 +4,7 @@ management:
   docChecksum: eadeb612f11fd940e08d62041e8104a8
   docVersion: 0.0.1
   speakeasyVersion: internal
-  generationVersion: 2.228.1
+  generationVersion: 2.233.2
   releaseVersion: 0.1.7
   configChecksum: a4ea6e80866a91d5174554bdcb2b319b
   repoURL: https://github.com/JR-1991/python-easyreview.git
