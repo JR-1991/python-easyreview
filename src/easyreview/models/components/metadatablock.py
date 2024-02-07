@@ -12,10 +12,10 @@ from typing import List, Optional
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class Metadatablock:
-    compounds: List[Compound] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compounds') }})
     id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('id') }})
-    name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('name') }})
     primitives: List[Field] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('primitives') }})
+    compounds: List[Compound] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('compounds') }})
+    name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('name') }})
     review: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('review') }})
     description: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('description'), 'exclude': lambda f: f is None }})
     

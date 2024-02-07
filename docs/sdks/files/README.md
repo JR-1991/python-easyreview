@@ -66,10 +66,10 @@ s = easyreview.EasyReview(
 
 res = s.files.update_file(id='string', file=components.FileInput(
     name='string',
+    review='9923feda-142e-468a-afba-01ad05b1c7dc',
     chat={
         'key': 'string',
     },
-    review='9923feda-142e-468a-afba-01ad05b1c7dc',
 ))
 
 if res.file is not None:

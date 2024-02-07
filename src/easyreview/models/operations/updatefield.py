@@ -10,8 +10,8 @@ from typing import Optional
 
 @dataclasses.dataclass
 class UpdateFieldRequest:
-    field: components_field_input.FieldInput = dataclasses.field(metadata={'request': { 'media_type': 'application/json' }})
     id: str = dataclasses.field(metadata={'path_param': { 'field_name': 'id', 'style': 'simple', 'explode': False }})
+    field: components_field_input.FieldInput = dataclasses.field(metadata={'request': { 'media_type': 'application/json' }})
     
 
 
@@ -20,10 +20,10 @@ class UpdateFieldRequest:
 class UpdateFieldResponse:
     content_type: str = dataclasses.field()
     r"""HTTP response content type for this operation"""
-    raw_response: requests_http.Response = dataclasses.field()
-    r"""Raw HTTP response; suitable for custom response parsing"""
     status_code: int = dataclasses.field()
     r"""HTTP response status code for this operation"""
+    raw_response: requests_http.Response = dataclasses.field()
+    r"""Raw HTTP response; suitable for custom response parsing"""
     field: Optional[components_field.Field] = dataclasses.field(default=None)
     
 

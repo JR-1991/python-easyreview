@@ -66,10 +66,10 @@ s = easyreview.EasyReview(
 
 res = s.fields.update_field(id='string', field=components.FieldInput(
     name='string',
+    value='string',
     chat={
         'key': 'string',
     },
-    value='string',
     history={
         'key': 'string',
     },

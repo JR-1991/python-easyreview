@@ -12,8 +12,8 @@ from typing import Any, Dict, Optional
 class FileInput:
     name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('name') }, 'form': { 'field_name': 'name' }, 'multipart_form': { 'field_name': 'name' }})
     review: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('review') }, 'form': { 'field_name': 'review' }, 'multipart_form': { 'field_name': 'review' }})
+    description: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('description'), 'exclude': lambda f: f is None }, 'form': { 'field_name': 'description' }, 'multipart_form': { 'field_name': 'description' }})
     accepted: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('accepted'), 'exclude': lambda f: f is None }, 'form': { 'field_name': 'accepted' }, 'multipart_form': { 'field_name': 'accepted' }})
     chat: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('chat'), 'exclude': lambda f: f is None }, 'form': { 'field_name': 'chat', 'json': True }, 'multipart_form': { 'field_name': 'chat', 'json': True }})
-    description: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('description'), 'exclude': lambda f: f is None }, 'form': { 'field_name': 'description' }, 'multipart_form': { 'field_name': 'description' }})
     
 

@@ -4,16 +4,16 @@ management:
   docChecksum: eadeb612f11fd940e08d62041e8104a8
   docVersion: 0.0.1
   speakeasyVersion: internal
-  generationVersion: 2.248.1
-  releaseVersion: 0.2.0
-  configChecksum: 164933490e133b4269641ed0e27fc719
+  generationVersion: 2.250.12
+  releaseVersion: 0.3.0
+  configChecksum: d268389b201856acc4a02ba1d34a58a8
   repoURL: https://github.com/JR-1991/python-easyreview.git
   repoSubDirectory: .
   installationURL: https://github.com/JR-1991/python-easyreview.git
   published: true
 features:
   python:
-    core: 4.4.4
+    core: 4.4.5
     flattening: 2.81.1
     globalSecurity: 2.83.2
     globalServerURLs: 2.82.1

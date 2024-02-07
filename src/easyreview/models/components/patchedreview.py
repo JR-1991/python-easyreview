@@ -12,11 +12,11 @@ from typing import Optional
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class PatchedReview:
+    doi: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('doi'), 'exclude': lambda f: f is None }, 'form': { 'field_name': 'doi' }, 'multipart_form': { 'field_name': 'doi' }})
+    site_url: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('site_url') }, 'form': { 'field_name': 'site_url' }, 'multipart_form': { 'field_name': 'site_url' }})
+    revision: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('revision'), 'exclude': lambda f: f is None }, 'form': { 'field_name': 'revision' }, 'multipart_form': { 'field_name': 'revision' }})
     accepted: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('accepted'), 'exclude': lambda f: f is None }, 'form': { 'field_name': 'accepted' }, 'multipart_form': { 'field_name': 'accepted' }})
     date_: Optional[datetime] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('date'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse, 'exclude': lambda f: f is None }, 'form': { 'field_name': 'date' }, 'multipart_form': { 'field_name': 'date' }})
-    doi: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('doi'), 'exclude': lambda f: f is None }, 'form': { 'field_name': 'doi' }, 'multipart_form': { 'field_name': 'doi' }})
     reviewer: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('reviewer') }, 'form': { 'field_name': 'reviewer' }, 'multipart_form': { 'field_name': 'reviewer' }})
-    revision: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('revision'), 'exclude': lambda f: f is None }, 'form': { 'field_name': 'revision' }, 'multipart_form': { 'field_name': 'revision' }})
-    site_url: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('site_url') }, 'form': { 'field_name': 'site_url' }, 'multipart_form': { 'field_name': 'site_url' }})
     
 
