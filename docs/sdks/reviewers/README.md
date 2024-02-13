@@ -98,7 +98,7 @@ Returns a reviewer for a given reviewer ID.
 
 ```python
 import easyreview
-from easyreview.models import components, operations
+from easyreview.models import components
 
 s = easyreview.EasyReview(
     security=components.Security(
@@ -138,7 +138,7 @@ Updates a reviewer for a given reviewer ID.
 
 ```python
 import easyreview
-from easyreview.models import components, operations
+from easyreview.models import components
 
 s = easyreview.EasyReview(
     security=components.Security(
@@ -184,7 +184,7 @@ Partially updates a reviewer for a given reviewer ID.
 
 ```python
 import easyreview
-from easyreview.models import components, operations
+from easyreview.models import components
 
 s = easyreview.EasyReview(
     security=components.Security(
@@ -225,7 +225,7 @@ Deletes a reviewer from the database.
 
 ```python
 import easyreview
-from easyreview.models import components, operations
+from easyreview.models import components
 
 s = easyreview.EasyReview(
     security=components.Security(

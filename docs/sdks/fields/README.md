@@ -15,7 +15,7 @@ Returns a field for a given field ID.
 
 ```python
 import easyreview
-from easyreview.models import components, operations
+from easyreview.models import components
 
 s = easyreview.EasyReview(
     security=components.Security(
@@ -55,7 +55,7 @@ Updates a field for a given field ID.
 
 ```python
 import easyreview
-from easyreview.models import components, operations
+from easyreview.models import components
 
 s = easyreview.EasyReview(
     security=components.Security(
@@ -67,12 +67,6 @@ s = easyreview.EasyReview(
 res = s.fields.update_field(id='string', field=components.FieldInput(
     name='string',
     value='string',
-    chat={
-        'key': 'string',
-    },
-    history={
-        'key': 'string',
-    },
 ))
 
 if res.field is not None:
@@ -105,7 +99,7 @@ Updates a field for a given field ID.
 
 ```python
 import easyreview
-from easyreview.models import components, operations
+from easyreview.models import components
 
 s = easyreview.EasyReview(
     security=components.Security(
@@ -114,14 +108,7 @@ s = easyreview.EasyReview(
 )
 
 
-res = s.fields.partial_update_field(id='string', patched_field=components.PatchedField(
-    chat={
-        'key': 'string',
-    },
-    history={
-        'key': 'string',
-    },
-))
+res = s.fields.partial_update_field(id='string', patched_field=components.PatchedField())
 
 if res.field is not None:
     # handle response

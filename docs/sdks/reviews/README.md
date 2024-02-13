@@ -56,7 +56,7 @@ Returns all files for a given review ID.
 
 ```python
 import easyreview
-from easyreview.models import components, operations
+from easyreview.models import components
 
 s = easyreview.EasyReview(
     security=components.Security(
@@ -96,7 +96,7 @@ Returns the number of fields for a given review ID.
 
 ```python
 import easyreview
-from easyreview.models import components, operations
+from easyreview.models import components
 
 s = easyreview.EasyReview(
     security=components.Security(
@@ -136,7 +136,7 @@ Returns a review for a given review ID.
 
 ```python
 import easyreview
-from easyreview.models import components, operations
+from easyreview.models import components
 
 s = easyreview.EasyReview(
     security=components.Security(
@@ -175,9 +175,8 @@ Updates a review for a given review ID.
 ### Example Usage
 
 ```python
-import dateutil.parser
 import easyreview
-from easyreview.models import components, operations
+from easyreview.models import components
 
 s = easyreview.EasyReview(
     security=components.Security(
@@ -219,9 +218,8 @@ Partially updates a review for a given review ID.
 ### Example Usage
 
 ```python
-import dateutil.parser
 import easyreview
-from easyreview.models import components, operations
+from easyreview.models import components
 
 s = easyreview.EasyReview(
     security=components.Security(
@@ -262,7 +260,7 @@ Deletes a review from the database.
 
 ```python
 import easyreview
-from easyreview.models import components, operations
+from easyreview.models import components
 
 s = easyreview.EasyReview(
     security=components.Security(
@@ -302,7 +300,7 @@ Returns all reviews for a given dataset DOI.
 
 ```python
 import easyreview
-from easyreview.models import components, operations
+from easyreview.models import components
 
 s = easyreview.EasyReview(
     security=components.Security(
@@ -342,7 +340,7 @@ Fetches a dataset from a Dataverse installation and adds it to the database. Thi
 
 ```python
 import easyreview
-from easyreview.models import components, operations
+from easyreview.models import components
 
 s = easyreview.EasyReview(
     security=components.Security(
@@ -384,7 +382,7 @@ Returns all reviews for a given reviewer ID.
 
 ```python
 import easyreview
-from easyreview.models import components, operations
+from easyreview.models import components
 
 s = easyreview.EasyReview(
     security=components.Security(

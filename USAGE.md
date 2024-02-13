@@ -1,7 +1,7 @@
 <!-- Start SDK Example Usage [usage] -->
 ```python
 import easyreview
-from easyreview.models import components, operations
+from easyreview.models import components
 
 s = easyreview.EasyReview(
     security=components.Security(

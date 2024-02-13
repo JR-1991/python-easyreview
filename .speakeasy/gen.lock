@@ -4,9 +4,9 @@ management:
   docChecksum: eadeb612f11fd940e08d62041e8104a8
   docVersion: 0.0.1
   speakeasyVersion: internal
-  generationVersion: 2.250.12
-  releaseVersion: 0.3.0
-  configChecksum: d268389b201856acc4a02ba1d34a58a8
+  generationVersion: 2.253.0
+  releaseVersion: 0.3.1
+  configChecksum: 9e231641f1e2b1217566764ae35ddb04
   repoURL: https://github.com/JR-1991/python-easyreview.git
   repoSubDirectory: .
   installationURL: https://github.com/JR-1991/python-easyreview.git
@@ -17,7 +17,7 @@ features:
     flattening: 2.81.1
     globalSecurity: 2.83.2
     globalServerURLs: 2.82.1
-    inputOutputModels: 2.83.0
+    inputOutputModels: 2.83.1
 generatedFiles:
   - src/easyreview/sdkconfiguration.py
   - src/easyreview/fields.py
