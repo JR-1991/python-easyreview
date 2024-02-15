@@ -65,7 +65,7 @@ s = easyreview.EasyReview(
 )
 
 
-res = s.reviews.get_files_by_review_id(id='string')
+res = s.reviews.get_files_by_review_id(id='<value>')
 
 if res.files is not None:
     # handle response
@@ -105,7 +105,7 @@ s = easyreview.EasyReview(
 )
 
 
-res = s.reviews.get_field_count(id='string')
+res = s.reviews.get_field_count(id='<value>')
 
 if res.status_code == 200:
     # handle response
@@ -145,7 +145,7 @@ s = easyreview.EasyReview(
 )
 
 
-res = s.reviews.get_review_by_id(id='string')
+res = s.reviews.get_review_by_id(id='<value>')
 
 if res.review is not None:
     # handle response
@@ -185,7 +185,7 @@ s = easyreview.EasyReview(
 )
 
 
-res = s.reviews.update_review(id='string', review=components.ReviewInput(
+res = s.reviews.update_review(id='<value>', review=components.ReviewInput(
     revision=229231,
 ))
 
@@ -228,7 +228,7 @@ s = easyreview.EasyReview(
 )
 
 
-res = s.reviews.partial_update_review(id='string', patched_review=components.PatchedReview())
+res = s.reviews.partial_update_review(id='<value>', patched_review=components.PatchedReview())
 
 if res.review is not None:
     # handle response
@@ -269,7 +269,7 @@ s = easyreview.EasyReview(
 )
 
 
-res = s.reviews.delete_review(id='string')
+res = s.reviews.delete_review(id='<value>')
 
 if res.status_code == 200:
     # handle response
@@ -309,7 +309,7 @@ s = easyreview.EasyReview(
 )
 
 
-res = s.reviews.get_reviews_by_dataset_doi(doi='string')
+res = s.reviews.get_reviews_by_dataset_doi(doi='<value>')
 
 if res.review is not None:
     # handle response
@@ -349,7 +349,7 @@ s = easyreview.EasyReview(
 )
 
 
-res = s.reviews.fetch_dataset_from_doi(doi='string', site_url='string', api_token='string')
+res = s.reviews.fetch_dataset_from_doi(doi='<value>', site_url='<value>', api_token='<value>')
 
 if res.review is not None:
     # handle response
@@ -391,7 +391,7 @@ s = easyreview.EasyReview(
 )
 
 
-res = s.reviews.get_reviews_by_reviewer(id='string')
+res = s.reviews.get_reviews_by_reviewer(id='<value>')
 
 if res.reviews is not None:
     # handle response

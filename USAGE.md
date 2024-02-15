@@ -10,7 +10,7 @@ s = easyreview.EasyReview(
 )
 
 
-res = s.fields.get_field_by_id(id='string')
+res = s.fields.get_field_by_id(id='<value>')
 
 if res.field is not None:
     # handle response

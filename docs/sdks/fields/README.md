@@ -24,7 +24,7 @@ s = easyreview.EasyReview(
 )
 
 
-res = s.fields.get_field_by_id(id='string')
+res = s.fields.get_field_by_id(id='<value>')
 
 if res.field is not None:
     # handle response
@@ -64,9 +64,9 @@ s = easyreview.EasyReview(
 )
 
 
-res = s.fields.update_field(id='string', field=components.FieldInput(
-    name='string',
-    value='string',
+res = s.fields.update_field(id='<value>', field=components.FieldInput(
+    name='<value>',
+    value='<value>',
 ))
 
 if res.field is not None:
@@ -108,7 +108,7 @@ s = easyreview.EasyReview(
 )
 
 
-res = s.fields.partial_update_field(id='string', patched_field=components.PatchedField())
+res = s.fields.partial_update_field(id='<value>', patched_field=components.PatchedField())
 
 if res.field is not None:
     # handle response

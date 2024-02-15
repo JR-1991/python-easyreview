@@ -24,7 +24,7 @@ s = easyreview.EasyReview(
 )
 
 
-res = s.files.get_file_by_id(id='string')
+res = s.files.get_file_by_id(id='<value>')
 
 if res.file is not None:
     # handle response
@@ -64,8 +64,8 @@ s = easyreview.EasyReview(
 )
 
 
-res = s.files.update_file(id='string', file=components.FileInput(
-    name='string',
+res = s.files.update_file(id='<value>', file=components.FileInput(
+    name='<value>',
     review='9923feda-142e-468a-afba-01ad05b1c7dc',
 ))
 
@@ -108,7 +108,7 @@ s = easyreview.EasyReview(
 )
 
 
-res = s.files.partial_update_file(id='string', patched_file=components.PatchedFile())
+res = s.files.partial_update_file(id='<value>', patched_file=components.PatchedFile())
 
 if res.file is not None:
     # handle response

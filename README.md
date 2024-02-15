@@ -31,7 +31,7 @@ s = easyreview.EasyReview(
 )
 
 
-res = s.fields.get_field_by_id(id='string')
+res = s.fields.get_field_by_id(id='<value>')
 
 if res.field is not None:
     # handle response
@@ -101,7 +101,7 @@ s = easyreview.EasyReview(
 
 res = None
 try:
-    res = s.fields.get_field_by_id(id='string')
+    res = s.fields.get_field_by_id(id='<value>')
 except errors.SDKError as e:
     # handle exception
     raise(e)
@@ -137,7 +137,7 @@ s = easyreview.EasyReview(
 )
 
 
-res = s.fields.get_field_by_id(id='string')
+res = s.fields.get_field_by_id(id='<value>')
 
 if res.field is not None:
     # handle response
@@ -160,7 +160,7 @@ s = easyreview.EasyReview(
 )
 
 
-res = s.fields.get_field_by_id(id='string')
+res = s.fields.get_field_by_id(id='<value>')
 
 if res.field is not None:
     # handle response
@@ -207,7 +207,7 @@ s = easyreview.EasyReview(
 )
 
 
-res = s.fields.get_field_by_id(id='string')
+res = s.fields.get_field_by_id(id='<value>')
 
 if res.field is not None:
     # handle response
