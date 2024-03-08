@@ -36,6 +36,7 @@ res = s.fields.get_field_by_id(id='<value>')
 if res.field is not None:
     # handle response
     pass
+
 ```
 <!-- End SDK Example Usage [usage] -->
 
@@ -109,6 +110,7 @@ except errors.SDKError as e:
 if res.field is not None:
     # handle response
     pass
+
 ```
 <!-- End Error Handling [errors] -->
 
@@ -142,6 +144,7 @@ res = s.fields.get_field_by_id(id='<value>')
 if res.field is not None:
     # handle response
     pass
+
 ```
 
 
@@ -165,6 +168,7 @@ res = s.fields.get_field_by_id(id='<value>')
 if res.field is not None:
     # handle response
     pass
+
 ```
 <!-- End Server Selection [server] -->
 
@@ -212,6 +216,7 @@ res = s.fields.get_field_by_id(id='<value>')
 if res.field is not None:
     # handle response
     pass
+
 ```
 <!-- End Authentication [security] -->
 

@@ -15,5 +15,6 @@ res = s.fields.get_field_by_id(id='<value>')
 if res.field is not None:
     # handle response
     pass
+
 ```
 <!-- End SDK Example Usage [usage] -->

@@ -32,6 +32,7 @@ res = s.reviewers.get_reviewers()
 if res.reviewers is not None:
     # handle response
     pass
+
 ```
 
 
@@ -72,6 +73,7 @@ res = s.reviewers.add_reviewer(req)
 if res.reviewer is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -112,6 +114,7 @@ res = s.reviewers.get_reviewer_by_id(id='<value>')
 if res.reviewer is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -157,6 +160,7 @@ res = s.reviewers.update_reviewer(id='<value>', reviewer=components.ReviewerInpu
 if res.reviewer is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -198,6 +202,7 @@ res = s.reviewers.partial_update_reviewer(id='<value>', patched_reviewer=compone
 if res.reviewer is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -236,9 +241,10 @@ s = easyreview.EasyReview(
 
 res = s.reviewers.delete_reviewer(id='<value>')
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters

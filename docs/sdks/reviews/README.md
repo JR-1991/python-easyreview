@@ -36,6 +36,7 @@ res = s.reviews.get_reviews()
 if res.reviews is not None:
     # handle response
     pass
+
 ```
 
 
@@ -70,6 +71,7 @@ res = s.reviews.get_files_by_review_id(id='<value>')
 if res.files is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -107,9 +109,10 @@ s = easyreview.EasyReview(
 
 res = s.reviews.get_field_count(id='<value>')
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -150,6 +153,7 @@ res = s.reviews.get_review_by_id(id='<value>')
 if res.review is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -192,6 +196,7 @@ res = s.reviews.update_review(id='<value>', review=components.ReviewInput(
 if res.review is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -233,6 +238,7 @@ res = s.reviews.partial_update_review(id='<value>', patched_review=components.Pa
 if res.review is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -271,9 +277,10 @@ s = easyreview.EasyReview(
 
 res = s.reviews.delete_review(id='<value>')
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -314,6 +321,7 @@ res = s.reviews.get_reviews_by_dataset_doi(doi='<value>')
 if res.review is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -354,6 +362,7 @@ res = s.reviews.fetch_dataset_from_doi(doi='<value>', site_url='<value>', api_to
 if res.review is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -396,6 +405,7 @@ res = s.reviews.get_reviews_by_reviewer(id='<value>')
 if res.reviews is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters

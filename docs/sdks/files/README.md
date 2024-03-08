@@ -29,6 +29,7 @@ res = s.files.get_file_by_id(id='<value>')
 if res.file is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -72,6 +73,7 @@ res = s.files.update_file(id='<value>', file=components.FileInput(
 if res.file is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -113,6 +115,7 @@ res = s.files.partial_update_file(id='<value>', patched_file=components.PatchedF
 if res.file is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters

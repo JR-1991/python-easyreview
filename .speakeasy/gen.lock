@@ -3,21 +3,22 @@ id: f5afb823-74ff-4c51-ac47-be3eacf33bec
 management:
   docChecksum: eadeb612f11fd940e08d62041e8104a8
   docVersion: 0.0.1
-  speakeasyVersion: internal
-  generationVersion: 2.275.4
-  releaseVersion: 0.4.0
-  configChecksum: 22e7eb4bdd401a173d15be25cb9994ae
+  speakeasyVersion: 1.204.1
+  generationVersion: 2.279.1
+  releaseVersion: 0.5.0
+  configChecksum: 03295db7e81ccb2fa6dea840a2e9fcf2
   repoURL: https://github.com/JR-1991/python-easyreview.git
   repoSubDirectory: .
   installationURL: https://github.com/JR-1991/python-easyreview.git
   published: true
 features:
   python:
-    core: 4.5.0
+    core: 4.5.1
     flattening: 2.81.1
     globalSecurity: 2.83.4
     globalServerURLs: 2.82.1
     inputOutputModels: 2.83.1
+    responseFormat: 0.1.0
 generatedFiles:
   - src/easyreview/sdkconfiguration.py
   - src/easyreview/fields.py
@@ -25,6 +26,7 @@ generatedFiles:
   - src/easyreview/reviewers.py
   - src/easyreview/reviews.py
   - src/easyreview/sdk.py
+  - py.typed
   - pylintrc
   - setup.py
   - src/easyreview/__init__.py

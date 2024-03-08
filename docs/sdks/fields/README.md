@@ -29,6 +29,7 @@ res = s.fields.get_field_by_id(id='<value>')
 if res.field is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -72,6 +73,7 @@ res = s.fields.update_field(id='<value>', field=components.FieldInput(
 if res.field is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -113,6 +115,7 @@ res = s.fields.partial_update_field(id='<value>', patched_field=components.Patch
 if res.field is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
