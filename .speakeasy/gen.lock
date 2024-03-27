@@ -3,21 +3,22 @@ id: f5afb823-74ff-4c51-ac47-be3eacf33bec
 management:
   docChecksum: eadeb612f11fd940e08d62041e8104a8
   docVersion: 0.0.1
-  speakeasyVersion: internal
-  generationVersion: 2.225.2
-  releaseVersion: 0.1.6
-  configChecksum: d522abffbe30fa4b710f14367225e653
+  speakeasyVersion: 1.227.0
+  generationVersion: 2.291.0
+  releaseVersion: 0.5.2
+  configChecksum: 73ac75c4c21c6bd99a2aa5431719295d
   repoURL: https://github.com/JR-1991/python-easyreview.git
   repoSubDirectory: .
   installationURL: https://github.com/JR-1991/python-easyreview.git
   published: true
 features:
   python:
-    core: 4.4.0
+    core: 4.5.2
     flattening: 2.81.1
-    globalSecurity: 2.83.1
-    globalServerURLs: 2.82.1
-    inputOutputModels: 2.83.0
+    globalSecurity: 2.83.5
+    globalServerURLs: 2.82.2
+    inputOutputModels: 2.83.1
+    responseFormat: 0.1.0
 generatedFiles:
   - src/easyreview/sdkconfiguration.py
   - src/easyreview/fields.py
@@ -25,6 +26,7 @@ generatedFiles:
   - src/easyreview/reviewers.py
   - src/easyreview/reviews.py
   - src/easyreview/sdk.py
+  - py.typed
   - pylintrc
   - setup.py
   - src/easyreview/__init__.py
@@ -137,3 +139,6 @@ generatedFiles:
   - docs/sdks/reviews/README.md
   - USAGE.md
   - .gitattributes
+  - src/easyreview/_hooks/sdkhooks.py
+  - src/easyreview/_hooks/types.py
+  - src/easyreview/_hooks/__init__.py

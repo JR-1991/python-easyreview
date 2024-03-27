@@ -10,10 +10,10 @@ from typing import Optional
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class PatchedReviewer:
-    affiliation: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('affiliation'), 'exclude': lambda f: f is None }, 'form': { 'field_name': 'affiliation' }, 'multipart_form': { 'field_name': 'affiliation' }})
-    email: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('email'), 'exclude': lambda f: f is None }, 'form': { 'field_name': 'email' }, 'multipart_form': { 'field_name': 'email' }})
+    username: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username'), 'exclude': lambda f: f is None }, 'form': { 'field_name': 'username' }, 'multipart_form': { 'field_name': 'username' }})
     first_name: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('first_name'), 'exclude': lambda f: f is None }, 'form': { 'field_name': 'first_name' }, 'multipart_form': { 'field_name': 'first_name' }})
     last_name: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('last_name'), 'exclude': lambda f: f is None }, 'form': { 'field_name': 'last_name' }, 'multipart_form': { 'field_name': 'last_name' }})
-    username: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username'), 'exclude': lambda f: f is None }, 'form': { 'field_name': 'username' }, 'multipart_form': { 'field_name': 'username' }})
+    email: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('email'), 'exclude': lambda f: f is None }, 'form': { 'field_name': 'email' }, 'multipart_form': { 'field_name': 'email' }})
+    affiliation: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('affiliation'), 'exclude': lambda f: f is None }, 'form': { 'field_name': 'affiliation' }, 'multipart_form': { 'field_name': 'affiliation' }})
     
 

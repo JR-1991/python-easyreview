@@ -11,13 +11,13 @@ from typing import Any, Dict, List, Optional
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class Compound:
-    field_type: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('field_type') }})
     id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('id') }})
-    metadatablock: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('metadatablock') }})
-    name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('name') }})
     primitives: List[Field] = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('primitives') }})
+    name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('name') }})
+    field_type: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('field_type') }})
+    metadatablock: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('metadatablock') }})
+    description: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('description'), 'exclude': lambda f: f is None }})
     accepted: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('accepted'), 'exclude': lambda f: f is None }})
     chat: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('chat'), 'exclude': lambda f: f is None }})
-    description: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('description'), 'exclude': lambda f: f is None }})
     
 

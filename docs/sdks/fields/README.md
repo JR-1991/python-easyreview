@@ -15,7 +15,7 @@ Returns a field for a given field ID.
 
 ```python
 import easyreview
-from easyreview.models import components, operations
+from easyreview.models import components
 
 s = easyreview.EasyReview(
     security=components.Security(
@@ -24,11 +24,12 @@ s = easyreview.EasyReview(
 )
 
 
-res = s.fields.get_field_by_id(id='string')
+res = s.fields.get_field_by_id(id='<value>')
 
 if res.field is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -55,7 +56,7 @@ Updates a field for a given field ID.
 
 ```python
 import easyreview
-from easyreview.models import components, operations
+from easyreview.models import components
 
 s = easyreview.EasyReview(
     security=components.Security(
@@ -64,20 +65,15 @@ s = easyreview.EasyReview(
 )
 
 
-res = s.fields.update_field(id='string', field=components.FieldInput(
-    name='string',
-    chat={
-        'key': 'string',
-    },
-    value='string',
-    history={
-        'key': 'string',
-    },
+res = s.fields.update_field(id='<value>', field=components.FieldInput(
+    name='<value>',
+    value='<value>',
 ))
 
 if res.field is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -105,7 +101,7 @@ Updates a field for a given field ID.
 
 ```python
 import easyreview
-from easyreview.models import components, operations
+from easyreview.models import components
 
 s = easyreview.EasyReview(
     security=components.Security(
@@ -114,18 +110,12 @@ s = easyreview.EasyReview(
 )
 
 
-res = s.fields.partial_update_field(id='string', patched_field=components.PatchedField(
-    chat={
-        'key': 'string',
-    },
-    history={
-        'key': 'string',
-    },
-))
+res = s.fields.partial_update_field(id='<value>', patched_field=components.PatchedField())
 
 if res.field is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters

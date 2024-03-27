@@ -15,7 +15,7 @@ Returns a file for a given file ID.
 
 ```python
 import easyreview
-from easyreview.models import components, operations
+from easyreview.models import components
 
 s = easyreview.EasyReview(
     security=components.Security(
@@ -24,11 +24,12 @@ s = easyreview.EasyReview(
 )
 
 
-res = s.files.get_file_by_id(id='string')
+res = s.files.get_file_by_id(id='<value>')
 
 if res.file is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -55,7 +56,7 @@ Updates a file for a given file ID.
 
 ```python
 import easyreview
-from easyreview.models import components, operations
+from easyreview.models import components
 
 s = easyreview.EasyReview(
     security=components.Security(
@@ -64,17 +65,15 @@ s = easyreview.EasyReview(
 )
 
 
-res = s.files.update_file(id='string', file=components.FileInput(
-    name='string',
-    chat={
-        'key': 'string',
-    },
+res = s.files.update_file(id='<value>', file=components.FileInput(
+    name='<value>',
     review='9923feda-142e-468a-afba-01ad05b1c7dc',
 ))
 
 if res.file is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -102,7 +101,7 @@ Updates a file for a given file ID.
 
 ```python
 import easyreview
-from easyreview.models import components, operations
+from easyreview.models import components
 
 s = easyreview.EasyReview(
     security=components.Security(
@@ -111,15 +110,12 @@ s = easyreview.EasyReview(
 )
 
 
-res = s.files.partial_update_file(id='string', patched_file=components.PatchedFile(
-    chat={
-        'key': 'string',
-    },
-))
+res = s.files.partial_update_file(id='<value>', patched_file=components.PatchedFile())
 
 if res.file is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters

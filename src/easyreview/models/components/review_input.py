@@ -12,11 +12,12 @@ from typing import Optional
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class ReviewInput:
+    UNSET='__SPEAKEASY_UNSET__'
     revision: int = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('revision') }, 'form': { 'field_name': 'revision' }, 'multipart_form': { 'field_name': 'revision' }})
+    doi: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('doi'), 'exclude': lambda f: f is None }, 'form': { 'field_name': 'doi' }, 'multipart_form': { 'field_name': 'doi' }})
+    site_url: Optional[str] = dataclasses.field(default=UNSET, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('site_url'), 'exclude': lambda f: f is ReviewInput.UNSET }, 'form': { 'field_name': 'site_url' }, 'multipart_form': { 'field_name': 'site_url' }})
     accepted: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('accepted'), 'exclude': lambda f: f is None }, 'form': { 'field_name': 'accepted' }, 'multipart_form': { 'field_name': 'accepted' }})
     date_: Optional[datetime] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('date'), 'encoder': utils.datetimeisoformat(True), 'decoder': dateutil.parser.isoparse, 'exclude': lambda f: f is None }, 'form': { 'field_name': 'date' }, 'multipart_form': { 'field_name': 'date' }})
-    doi: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('doi'), 'exclude': lambda f: f is None }, 'form': { 'field_name': 'doi' }, 'multipart_form': { 'field_name': 'doi' }})
-    reviewer: Optional[int] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('reviewer') }, 'form': { 'field_name': 'reviewer' }, 'multipart_form': { 'field_name': 'reviewer' }})
-    site_url: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('site_url') }, 'form': { 'field_name': 'site_url' }, 'multipart_form': { 'field_name': 'site_url' }})
+    reviewer: Optional[int] = dataclasses.field(default=UNSET, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('reviewer'), 'exclude': lambda f: f is ReviewInput.UNSET }, 'form': { 'field_name': 'reviewer' }, 'multipart_form': { 'field_name': 'reviewer' }})
     
 

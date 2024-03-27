@@ -22,7 +22,7 @@ pip install easyreview
 
 ```python
 import easyreview
-from easyreview.models import components, operations
+from easyreview.models import components
 
 s = easyreview.EasyReview(
     security=components.Security(
@@ -31,11 +31,12 @@ s = easyreview.EasyReview(
 )
 
 
-res = s.fields.get_field_by_id(id='string')
+res = s.fields.get_field_by_id(id='<value>')
 
 if res.field is not None:
     # handle response
     pass
+
 ```
 <!-- End SDK Example Usage [usage] -->
 
@@ -90,7 +91,7 @@ Handling errors in this SDK should largely match your expectations.  All operati
 
 ```python
 import easyreview
-from easyreview.models import components, operations
+from easyreview.models import components, errors
 
 s = easyreview.EasyReview(
     security=components.Security(
@@ -101,14 +102,15 @@ s = easyreview.EasyReview(
 
 res = None
 try:
-    res = s.fields.get_field_by_id(id='string')
+    res = s.fields.get_field_by_id(id='<value>')
 except errors.SDKError as e:
-    print(e)  # handle exception
+    # handle exception
     raise(e)
 
 if res.field is not None:
     # handle response
     pass
+
 ```
 <!-- End Error Handling [errors] -->
 
@@ -127,7 +129,7 @@ You can override the default server globally by passing a server index to the `s
 
 ```python
 import easyreview
-from easyreview.models import components, operations
+from easyreview.models import components
 
 s = easyreview.EasyReview(
     server_idx=0,
@@ -137,11 +139,12 @@ s = easyreview.EasyReview(
 )
 
 
-res = s.fields.get_field_by_id(id='string')
+res = s.fields.get_field_by_id(id='<value>')
 
 if res.field is not None:
     # handle response
     pass
+
 ```
 
 
@@ -150,7 +153,7 @@ if res.field is not None:
 The default server can also be overridden globally by passing a URL to the `server_url: str` optional parameter when initializing the SDK client instance. For example:
 ```python
 import easyreview
-from easyreview.models import components, operations
+from easyreview.models import components
 
 s = easyreview.EasyReview(
     server_url="http://localhost:8000",
@@ -160,18 +163,19 @@ s = easyreview.EasyReview(
 )
 
 
-res = s.fields.get_field_by_id(id='string')
+res = s.fields.get_field_by_id(id='<value>')
 
 if res.field is not None:
     # handle response
     pass
+
 ```
 <!-- End Server Selection [server] -->
 
 <!-- Start Custom HTTP Client [http-client] -->
 ## Custom HTTP Client
 
-The Python SDK makes API calls using the (requests)[https://pypi.org/project/requests/] HTTP library.  In order to provide a convenient way to configure timeouts, cookies, proxies, custom headers, and other low-level configuration, you can initialize the SDK client with a custom `requests.Session` object.
+The Python SDK makes API calls using the [requests](https://pypi.org/project/requests/) HTTP library.  In order to provide a convenient way to configure timeouts, cookies, proxies, custom headers, and other low-level configuration, you can initialize the SDK client with a custom `requests.Session` object.
 
 For example, you could specify a header for every request that this sdk makes as follows:
 ```python
@@ -198,7 +202,7 @@ This SDK supports the following security scheme globally:
 You can set the security parameters through the `security` optional parameter when initializing the SDK client instance. For example:
 ```python
 import easyreview
-from easyreview.models import components, operations
+from easyreview.models import components
 
 s = easyreview.EasyReview(
     security=components.Security(
@@ -207,11 +211,12 @@ s = easyreview.EasyReview(
 )
 
 
-res = s.fields.get_field_by_id(id='string')
+res = s.fields.get_field_by_id(id='<value>')
 
 if res.field is not None:
     # handle response
     pass
+
 ```
 <!-- End Authentication [security] -->
 

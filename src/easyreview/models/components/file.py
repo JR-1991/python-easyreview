@@ -10,12 +10,12 @@ from typing import Any, Dict, Optional
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class File:
-    field_type: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('field_type') }})
     id: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('id') }})
     name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('name') }})
+    field_type: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('field_type') }})
     review: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('review') }})
+    description: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('description'), 'exclude': lambda f: f is None }})
     accepted: Optional[bool] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('accepted'), 'exclude': lambda f: f is None }})
     chat: Optional[Dict[str, Any]] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('chat'), 'exclude': lambda f: f is None }})
-    description: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('description'), 'exclude': lambda f: f is None }})
     
 

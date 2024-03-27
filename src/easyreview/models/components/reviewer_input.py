@@ -10,10 +10,10 @@ from typing import Optional
 @dataclass_json(undefined=Undefined.EXCLUDE)
 @dataclasses.dataclass
 class ReviewerInput:
-    email: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('email') }, 'form': { 'field_name': 'email' }, 'multipart_form': { 'field_name': 'email' }})
+    username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }, 'form': { 'field_name': 'username' }, 'multipart_form': { 'field_name': 'username' }})
     first_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('first_name') }, 'form': { 'field_name': 'first_name' }, 'multipart_form': { 'field_name': 'first_name' }})
     last_name: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('last_name') }, 'form': { 'field_name': 'last_name' }, 'multipart_form': { 'field_name': 'last_name' }})
-    username: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('username') }, 'form': { 'field_name': 'username' }, 'multipart_form': { 'field_name': 'username' }})
+    email: str = dataclasses.field(metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('email') }, 'form': { 'field_name': 'email' }, 'multipart_form': { 'field_name': 'email' }})
     affiliation: Optional[str] = dataclasses.field(default=None, metadata={'dataclasses_json': { 'letter_case': utils.get_field_name('affiliation'), 'exclude': lambda f: f is None }, 'form': { 'field_name': 'affiliation' }, 'multipart_form': { 'field_name': 'affiliation' }})
     
 

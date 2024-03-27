@@ -32,6 +32,7 @@ res = s.reviewers.get_reviewers()
 if res.reviewers is not None:
     # handle response
     pass
+
 ```
 
 
@@ -72,6 +73,7 @@ res = s.reviewers.add_reviewer(req)
 if res.reviewer is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -98,7 +100,7 @@ Returns a reviewer for a given reviewer ID.
 
 ```python
 import easyreview
-from easyreview.models import components, operations
+from easyreview.models import components
 
 s = easyreview.EasyReview(
     security=components.Security(
@@ -107,11 +109,12 @@ s = easyreview.EasyReview(
 )
 
 
-res = s.reviewers.get_reviewer_by_id(id='string')
+res = s.reviewers.get_reviewer_by_id(id='<value>')
 
 if res.reviewer is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -138,7 +141,7 @@ Updates a reviewer for a given reviewer ID.
 
 ```python
 import easyreview
-from easyreview.models import components, operations
+from easyreview.models import components
 
 s = easyreview.EasyReview(
     security=components.Security(
@@ -147,7 +150,7 @@ s = easyreview.EasyReview(
 )
 
 
-res = s.reviewers.update_reviewer(id='string', reviewer=components.ReviewerInput(
+res = s.reviewers.update_reviewer(id='<value>', reviewer=components.ReviewerInput(
     username='Oran.Bergnaum91',
     first_name='Ressie',
     last_name='Langosh',
@@ -157,6 +160,7 @@ res = s.reviewers.update_reviewer(id='string', reviewer=components.ReviewerInput
 if res.reviewer is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -184,7 +188,7 @@ Partially updates a reviewer for a given reviewer ID.
 
 ```python
 import easyreview
-from easyreview.models import components, operations
+from easyreview.models import components
 
 s = easyreview.EasyReview(
     security=components.Security(
@@ -193,11 +197,12 @@ s = easyreview.EasyReview(
 )
 
 
-res = s.reviewers.partial_update_reviewer(id='string', patched_reviewer=components.PatchedReviewer())
+res = s.reviewers.partial_update_reviewer(id='<value>', patched_reviewer=components.PatchedReviewer())
 
 if res.reviewer is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -225,7 +230,7 @@ Deletes a reviewer from the database.
 
 ```python
 import easyreview
-from easyreview.models import components, operations
+from easyreview.models import components
 
 s = easyreview.EasyReview(
     security=components.Security(
@@ -234,11 +239,12 @@ s = easyreview.EasyReview(
 )
 
 
-res = s.reviewers.delete_reviewer(id='string')
+res = s.reviewers.delete_reviewer(id='<value>')
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters

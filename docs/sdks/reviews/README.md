@@ -36,6 +36,7 @@ res = s.reviews.get_reviews()
 if res.reviews is not None:
     # handle response
     pass
+
 ```
 
 
@@ -56,7 +57,7 @@ Returns all files for a given review ID.
 
 ```python
 import easyreview
-from easyreview.models import components, operations
+from easyreview.models import components
 
 s = easyreview.EasyReview(
     security=components.Security(
@@ -65,11 +66,12 @@ s = easyreview.EasyReview(
 )
 
 
-res = s.reviews.get_files_by_review_id(id='string')
+res = s.reviews.get_files_by_review_id(id='<value>')
 
 if res.files is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -96,7 +98,7 @@ Returns the number of fields for a given review ID.
 
 ```python
 import easyreview
-from easyreview.models import components, operations
+from easyreview.models import components
 
 s = easyreview.EasyReview(
     security=components.Security(
@@ -105,11 +107,12 @@ s = easyreview.EasyReview(
 )
 
 
-res = s.reviews.get_field_count(id='string')
+res = s.reviews.get_field_count(id='<value>')
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -136,7 +139,7 @@ Returns a review for a given review ID.
 
 ```python
 import easyreview
-from easyreview.models import components, operations
+from easyreview.models import components
 
 s = easyreview.EasyReview(
     security=components.Security(
@@ -145,11 +148,12 @@ s = easyreview.EasyReview(
 )
 
 
-res = s.reviews.get_review_by_id(id='string')
+res = s.reviews.get_review_by_id(id='<value>')
 
 if res.review is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -175,9 +179,8 @@ Updates a review for a given review ID.
 ### Example Usage
 
 ```python
-import dateutil.parser
 import easyreview
-from easyreview.models import components, operations
+from easyreview.models import components
 
 s = easyreview.EasyReview(
     security=components.Security(
@@ -186,13 +189,14 @@ s = easyreview.EasyReview(
 )
 
 
-res = s.reviews.update_review(id='string', review=components.ReviewInput(
+res = s.reviews.update_review(id='<value>', review=components.ReviewInput(
     revision=229231,
 ))
 
 if res.review is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -219,9 +223,8 @@ Partially updates a review for a given review ID.
 ### Example Usage
 
 ```python
-import dateutil.parser
 import easyreview
-from easyreview.models import components, operations
+from easyreview.models import components
 
 s = easyreview.EasyReview(
     security=components.Security(
@@ -230,11 +233,12 @@ s = easyreview.EasyReview(
 )
 
 
-res = s.reviews.partial_update_review(id='string', patched_review=components.PatchedReview())
+res = s.reviews.partial_update_review(id='<value>', patched_review=components.PatchedReview())
 
 if res.review is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -262,7 +266,7 @@ Deletes a review from the database.
 
 ```python
 import easyreview
-from easyreview.models import components, operations
+from easyreview.models import components
 
 s = easyreview.EasyReview(
     security=components.Security(
@@ -271,11 +275,12 @@ s = easyreview.EasyReview(
 )
 
 
-res = s.reviews.delete_review(id='string')
+res = s.reviews.delete_review(id='<value>')
 
-if res.status_code == 200:
+if res is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -302,7 +307,7 @@ Returns all reviews for a given dataset DOI.
 
 ```python
 import easyreview
-from easyreview.models import components, operations
+from easyreview.models import components
 
 s = easyreview.EasyReview(
     security=components.Security(
@@ -311,11 +316,12 @@ s = easyreview.EasyReview(
 )
 
 
-res = s.reviews.get_reviews_by_dataset_doi(doi='string')
+res = s.reviews.get_reviews_by_dataset_doi(doi='<value>')
 
 if res.review is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -342,7 +348,7 @@ Fetches a dataset from a Dataverse installation and adds it to the database. Thi
 
 ```python
 import easyreview
-from easyreview.models import components, operations
+from easyreview.models import components
 
 s = easyreview.EasyReview(
     security=components.Security(
@@ -351,11 +357,12 @@ s = easyreview.EasyReview(
 )
 
 
-res = s.reviews.fetch_dataset_from_doi(doi='string', site_url='string', api_token='string')
+res = s.reviews.fetch_dataset_from_doi(doi='<value>', site_url='<value>', api_token='<value>')
 
 if res.review is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
@@ -384,7 +391,7 @@ Returns all reviews for a given reviewer ID.
 
 ```python
 import easyreview
-from easyreview.models import components, operations
+from easyreview.models import components
 
 s = easyreview.EasyReview(
     security=components.Security(
@@ -393,11 +400,12 @@ s = easyreview.EasyReview(
 )
 
 
-res = s.reviews.get_reviews_by_reviewer(id='string')
+res = s.reviews.get_reviews_by_reviewer(id='<value>')
 
 if res.reviews is not None:
     # handle response
     pass
+
 ```
 
 ### Parameters
